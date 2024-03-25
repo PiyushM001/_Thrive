@@ -24,6 +24,8 @@ function App() {
         <Route path="/profile/about" element={ <Profilepage/> } />
         <Route path="/players" element={ <Players/> } />
         <Route path="/post" element={ <Postpage/> } />
+        {/* <Route path="/post" element={ <Postpage/> } /> */}
+
       </Routes></Router>
    </>
   );
