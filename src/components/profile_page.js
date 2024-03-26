@@ -63,10 +63,10 @@ export default function Profilepage() {
 
 <div className='bg-[#090909] h-[3rem] flex  items-center justify-center'>
   <div className='bg-[#090909] w-[90%] h-[2rem] flex justify-evenly'>
-  <Link className='border-r-[2px]  border-[#222222] w-full flex justify-center items-center' to='index.html#/profile'> <div className=' w-full flex justify-center text-[#656565] text-[3.5vw]'>BGMI</div></Link> 
+  <Link className='border-r-[2px]  border-[#222222] w-full flex justify-center items-center' to='/profile'> <div className=' w-full flex justify-center text-[#656565] text-[3.5vw]'>BGMI</div></Link> 
 
-    <Link className='border-r-[2px] border-b-[3px] border-r-[#222222] border-b-[#B4FF16] shadow-b-inner shadow-[#B4FF16] w-full flex justify-center items-center' to='index.html#/profile/about'> <div className=' text-[#B4FF16] text-[3.5vw] '>About</div></Link>  
-    <Link className=' w-full flex justify-center items-center' to='index.html#/profile/posts'>  <div className='border-[#222222] w-full flex justify-center text-[#656565]  text-[3.5vw]'>Posts</div></Link>
+    <Link className='border-r-[2px] border-b-[3px] border-r-[#222222] border-b-[#B4FF16] shadow-b-inner shadow-[#B4FF16] w-full flex justify-center items-center' to='/profile/about'> <div className=' text-[#B4FF16] text-[3.5vw] '>About</div></Link>  
+    <Link className=' w-full flex justify-center items-center' to='/profile/posts'>  <div className='border-[#222222] w-full flex justify-center text-[#656565]  text-[3.5vw]'>Posts</div></Link>
     </div>
 
       </div>

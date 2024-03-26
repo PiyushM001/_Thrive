@@ -75,7 +75,7 @@ export default function Profilepagegames() {
           <div className="bg-[#090909] w-[90%] h-[2rem] flex justify-evenly">
             <Link
               className="border-r-[2px]  border-[#222222] border-b-[2px] border-b-[#B4FF16] shadow-b-inner shadow-[#B4FF16] w-full flex justify-center items-center"
-              to="index.html#/profile"
+              to="/profile"
             >
               {" "}
               <div className=" w-full flex justify-center text-[#B4FF16] text-[3.5vw]">
@@ -85,14 +85,14 @@ export default function Profilepagegames() {
 
             <Link
               className="border-r-[2px]  border-r-[#222222] w-full flex justify-center items-center"
-              to="index.html#/profile/about"
+              to="/profile/about"
             >
               {" "}
               <div className=" text-[#656565] text-[3.5vw] ">About</div>
             </Link>
             <Link
               className=" w-full flex justify-center items-center "
-              to="index.html#/profile/posts"
+              to="/profile/posts"
             >
               {" "}
               <div className="border-[#222222] w-full flex justify-center text-[#656565]  text-[3.5vw]">

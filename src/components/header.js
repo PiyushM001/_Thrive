@@ -12,7 +12,7 @@ import { Link } from 'react-router-dom';
 export default function Header() {
   return (
     <div className='flex w-full h-[10vh] bg-[black] justify-evenly items-center '>
-<Link className='w-[4rem] mr-[-5vw] ml-[-5vw]' to="index.html#/profile"><img className=' w-[150%] ' src={profile}></img>
+<Link className='w-[4rem] mr-[-5vw] ml-[-5vw]' to="/profile"><img className=' w-[150%] ' src={profile}></img>
 </Link>
 
      <Form inline className='bg-[#373737] rounded-[10px] border-2 border-[#2c2c2c]  '>

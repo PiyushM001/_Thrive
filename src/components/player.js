@@ -10,7 +10,7 @@ export default function Player(props) {
     }
   return (
     <>
-    <Link to='index.html#/profile' className='w-[40vw] mt-4 ml-2 mr-2 '>
+    <Link to='/profile' className='w-[40vw] mt-4 ml-2 mr-2 '>
       <div className='w-[40vw] h-[10.4rem] bg-[#121212] rounded-[10px]'>
         <div className='relative h-[5rem]'>
         <img className='rounded-t-[10px] w-[100%] h-[3rem]'  src={profilebg}></img>

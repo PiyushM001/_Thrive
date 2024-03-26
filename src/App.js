@@ -15,7 +15,8 @@ import Postpage from './components/post_page';
 function App() {
   return (
     <>
-     <Router basename={process.env.PUBLIC_URL}>
+     <Router >
+     
      <Routes>
         <Route path="/" element={ <Home/> } />
         <Route path="/tournaments" element={ <Tournamentpage/> } />
