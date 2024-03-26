@@ -1,7 +1,7 @@
 import './App.css';
 import React from 'react';
 import {
-  HashRouter as Router,
+  BrowserRouter as Router,
   Route,
   Routes
 } from 'react-router-dom';
@@ -15,7 +15,7 @@ import Postpage from './components/post_page';
 function App() {
   return (
     <>
-     <Router>
+     <Router basename={process.env.PUBLIC_URL}>
      <Routes>
         <Route path="/" element={ <Home/> } />
         <Route path="/tournaments" element={ <Tournamentpage/> } />

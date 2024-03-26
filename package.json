@@ -18,6 +18,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
+    "homepage": "https://piyushm001.github.io/_Thrive/",
     "predeploy" : "npm run build",
 "deploy" : "gh-pages -d build",
     "start": "react-scripts start",
