@@ -11,6 +11,17 @@ module.exports = {
     "./src/components/profile_page_posts.js",
     "./src/components/players_page.js",
     "./src/components/player.js",
+    "./src/components/profile_form.js",
+    "./src/components/login.js",
+    "./src/components/aftersignupform.js",
+    "./src/components/Team_page.js",
+    "./src/components/followcomp.js",
+    "./src/components/followers.js",
+
+    "./src/components/ownprofilepage.js",
+
+
+
 
   ],
    theme: {

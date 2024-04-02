@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Navbar from 'react-bootstrap/Navbar';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
@@ -10,10 +10,24 @@ import bell from '../Images/notification-icon.svg';
 import { Link } from 'react-router-dom';
 
 export default function Header() {
+   const [loginstate , setloginstate ]= useState();
+   useEffect(()=>{
+    const localtoken = localStorage.getItem("token");
+    console.log("localtokenheader",localtoken)
+    if(localtoken){
+      setloginstate(true);
+    }
+    else(
+      setloginstate(false)
+    )
+   },[])
+
   return (
     <div className='flex w-full h-[10vh] bg-[black] justify-evenly items-center '>
-<Link className='w-[4rem] mr-[-5vw] ml-[-5vw]' to="/profile"><img className=' w-[150%] ' src={profile}></img>
-</Link>
+          {loginstate && <Link className='w-[4rem] mr-[-5vw] ml-[-5vw]' to="/profile"><img className=' w-[150%] ' src={profile}></img>
+</Link>}
+
+{!loginstate && <Link to="/loginas"><div className='border-[2px] border-[#B4FF16] rounded-[10px] pl-2 pr-2 pt-1 pb-1 text-[#ffffff] text-[3vw]'> Sign up</div></Link>}
 
      <Form inline className='bg-[#373737] rounded-[10px] border-2 border-[#2c2c2c]  '>
         <Row>
