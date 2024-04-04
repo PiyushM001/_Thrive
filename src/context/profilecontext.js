@@ -32,6 +32,9 @@ if (localtoken2) {
   const [followersarray,setfollowersarray]=useState(aa)
   const bb=[]
   const [followingarray,setfollowingarray]=useState(bb)
+  const cc=[]
+  const [notificationarray,setnotificationarray]=useState(bb)
+
  const info=[]
 const [ infostate , setinfostate ]=useState(info);
 const userinfo = [];
@@ -138,6 +141,32 @@ const createinfo= async ( IngameName , RealName , game )=>{
     toast(err);
     console.log(err);
   });}
+
+  const createteam= async ( teamname )=>{
+    const response = await fetch("http://localhost:5000/createteam", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "token":localtoken
+      },
+      body: JSON.stringify({ teamname })
+    }) .then(async (response) => {
+      const x = await response.json();
+     
+      // const st = await response.text();
+      if (response.ok) {
+        toast.success("submission Successful");
+         localStorage.setItem("teamid", x._id);
+       navigate("/team")
+      } else {
+        toast.error("sdgds");
+      }
+      // toast(res.json())
+    })
+    .catch((err) => {
+      toast(err);
+      console.log(err);
+    });}
  // console.log("ye dekh res", response)
   //   const data2 = await response.json();
   //   setinfostate(infostate.concat(data2))
@@ -205,6 +234,37 @@ getplayerinfo(_id);
    
   }
 
+  const invite = async (_userid,RealName,IngameName,followerRealName,followerIngameName) => {
+    // API Call 
+    const response = await fetch("http://localhost:5000/invite", {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        "token":localtoken
+      },
+      body: JSON.stringify({_userid,RealName,IngameName,followerRealName,followerIngameName})
+    }).then(async (response) => {
+      // const st = await response.text();
+      // console.log("yedekh kedfhdfhdfhfghdshgdfshdf",response.text())
+      const p = await response.text();
+
+      if (response.ok) {
+getplayerinfo(_userid);
+        toast.success(p);
+
+      } else {
+        toast.error(p);
+      }
+      // toast(res.json())
+    })
+    .catch((err) => {
+      toast(err);
+      console.log(err);
+    });
+   
+  }
+
+
   const getfollowerslist= async (_id)=>{
  
     const response = await fetch("http://localhost:5000/getplayerinfo", {
@@ -216,7 +276,7 @@ getplayerinfo(_id);
   
     });
     const data = await response.json() 
-    console.log("upar",data);
+    // console.log("upar",data);
      setfollowersarray(data.followers)
   }
   
@@ -231,10 +291,26 @@ getplayerinfo(_id);
   
     });
     const data = await response.json() 
-    console.log("upar",data);
+    // console.log("upar",data);
      setfollowingarray(data.following)
   }
 
+
+  const getnotification= async (_id)=>{
+ 
+    const response = await fetch("http://localhost:5000/getnotification", {
+      method: "GET",
+      headers: {
+        'Content-Type': 'application/json',
+        "token":localtoken
+      },
+  
+    });
+    const data = await response.json() 
+    console.log("notifi",data.invitinguser);
+     setnotificationarray(data.invitinguser)
+  }
+  
 // const createinfo= async ( text , playerid , device)=>{
 
 //   const response = await fetch("http://localhost:5000/createinfo", {
@@ -271,7 +347,7 @@ const getplayers= async ()=>{
 // getfollowinglist,getfollowerslist
   return (
     
-        <pContext.Provider value={ { playerinfo2,infostate, getinfo  , getplayerinfo ,playerinfo,createinfo,users,updateinfo,getplayers,follow ,followbtntext,followingarray,followersarray,followerRealName ,followerIngameName, getfollowinglist,getfollowerslist} }>
+        <pContext.Provider value={ {notificationarray,createteam, getnotification,invite, playerinfo2,infostate, getinfo  , getplayerinfo ,playerinfo,createinfo,users,updateinfo,getplayers,follow ,followbtntext,followingarray,followersarray,followerRealName ,followerIngameName, getfollowinglist,getfollowerslist} }>
       {props.children}
     </pContext.Provider>
    

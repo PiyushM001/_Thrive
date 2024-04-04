@@ -16,7 +16,7 @@ export default function Profilepagegames() {
   const { _id } = useParams();
   const a = useContext(pContext);
 
-  const { infostate, playerinfo, getplayerinfo, follow, followbtntext,getinfo,followerIngameName,followerRealName } = a;
+  const {invite, infostate, playerinfo, getplayerinfo, follow, followbtntext,getinfo,followerIngameName,followerRealName } = a;
 
   useEffect(() => {
     console.log("chal rha")
@@ -33,11 +33,13 @@ export default function Profilepagegames() {
   
   // const followerRealName = infostate[0].RealName;
   // const followerIngameName = infostate[0].IngameName;
-  
+  const _userid=playerinfo.user;
   const handlec = () => {
     follow(_id,RealName,IngameName,followerRealName,followerIngameName);
   };
-
+  const handleinvite = () => {
+    invite(_userid,RealName,IngameName,followerRealName,followerIngameName);
+  };
   // about,contact,contact2,text,education , skill1, skill2, skill3, playerid, location, tournament1, tournament2,  infoid
   
   const game = playerinfo.game;
@@ -85,8 +87,8 @@ const tournament2=playerinfo.tournament2;
               >
                 {followbtntext}
               </div>
-              <div className="flex justify-center items-center text-[#ffffff] border-[#B4FF16] border-[2px] w-[30%] h-[50%] font-medium rounded-[10px] text-[3vw] p-[3px]">
-                message
+              <div  onClick={handleinvite}  className="flex justify-center items-center text-[#ffffff] border-[#B4FF16] border-[2px] w-[30%] h-[50%] font-medium rounded-[10px] text-[3vw] p-[3px]">
+              Invite
               </div>
             </div>
 

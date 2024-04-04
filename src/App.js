@@ -27,6 +27,8 @@ import Following from './components/following';
 import Skillsform from './components/forms/skillsform';
 import Ownprofilepage3 from './components/ownprofilepage3';
 import Ownprofilepage2 from './components/ownprofilepage2';
+import Notificationpage from './components/notification';
+import Teamnameform from './components/teamnameform';
 
 function App() {
 
@@ -62,9 +64,9 @@ function App() {
         <Route path="/followers/:_id" element={ <Followers/> } />
         <Route path="/following/:_id" element={ <Following/> } />
         <Route path="/skillsform" element={ <Skillsform/> } />
-
+        <Route path="/notification" element={ <Notificationpage/> } />
         {/* <Route path="/post" element={ <Postpage/> } /> */}
-
+        <Route path="/teamnameform" element={ <Teamnameform/> } />
       </Routes>
       </Profilecontext>  </Signcontext>
 

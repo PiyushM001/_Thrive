@@ -41,7 +41,7 @@ export default function Header() {
          
         </Row>
       </Form>
-      <img className='w-[5vw]' src={bell}></img>
+     <Link to="/notification" ><img className='w-[5vw]' src={bell}></img></Link> 
 
       <img  className='w-[7vw]' src={chat}></img>
 
