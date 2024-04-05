@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 export const sContext = createContext();
+const port = "https://thrive-backend-o6k3.onrender.com"
 
 export default function Signcontext(props) {
   const host = "localhost:5000";
@@ -15,7 +16,7 @@ export default function Signcontext(props) {
 
   //  const getinfo= async ()=>{
 
-  //   const response = await fetch("http://localhost:5000/getinfo", {
+  //   const response = await fetch(`${port}/getinfo", {
   //     method: "GET",
   //     headers: {
   //       "Content-Type": "application/json",
@@ -29,7 +30,7 @@ export default function Signcontext(props) {
   // }
 
   const signin = async (email, password, confirmpassword) => {
-    const response = await fetch("http://localhost:5000/signin ", {
+    const response = await fetch(`${port}/signin `, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -58,7 +59,7 @@ export default function Signcontext(props) {
 
   const login = async (email, password) => {
 
-    const response = await fetch("http://localhost:5000/login ", {
+    const response = await fetch(`${port}/login `, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

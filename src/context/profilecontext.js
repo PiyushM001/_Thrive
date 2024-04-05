@@ -3,9 +3,10 @@ import { createContext } from "react";
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer, toast } from 'react-toastify';
 import { useNavigate } from "react-router-dom";
-
+// require('dotenv').config();
+// const host = process.env.port
 export const  pContext = createContext();
-
+const port = "https://thrive-backend-o6k3.onrender.com"
 
 export default function   Profilecontext(props) {
   // const localtoken2 = localStorage.getItem("token");
@@ -27,7 +28,7 @@ if (localtoken2) {
   //   console.log("localtokengdgrgergergerg",localtoken)
   //   setlocaltoken(localtoken2)
   // }
-  const host = "localhost:5000";
+  // const host = "localhost:5000";
   const aa=[]
   const [followersarray,setfollowersarray]=useState(aa)
   const bb=[]
@@ -59,7 +60,7 @@ let navigate = useNavigate();
 
  const getinfo= async ()=>{
  
-  const response = await fetch("http://localhost:5000/getinfo", {
+  const response = await fetch(`${port}/getinfo`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -81,7 +82,7 @@ setfollowerIngameName (data[0].IngameName)
 
 // const getplayerinfo= async (_id)=>{
  
-//   const response = await fetch("http://localhost:5000/getplayerinfo", {
+//   const response = await fetch(`${port}/getplayerinfo", {
 //     method: "POST",
 //     headers: {
 //       "Content-Type": "application/json",
@@ -98,7 +99,7 @@ setfollowerIngameName (data[0].IngameName)
 
 const getplayerinfo= async (_id)=>{
  
-  const response = await fetch("http://localhost:5000/getplayerinfo", {
+  const response = await fetch(`${port}/getplayerinfo`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -117,7 +118,7 @@ const getplayerinfo= async (_id)=>{
 
 
 const createinfo= async ( IngameName , RealName , game )=>{
-  const response = await fetch("http://localhost:5000/createinfo", {
+  const response = await fetch(`${port}/createinfo`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -143,7 +144,7 @@ const createinfo= async ( IngameName , RealName , game )=>{
   });}
 
   const createteam= async ( teamname )=>{
-    const response = await fetch("http://localhost:5000/createteam", {
+    const response = await fetch(`${port}/createteam`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -175,7 +176,7 @@ const createinfo= async ( IngameName , RealName , game )=>{
 
   const updateinfo = async ( about,contact1,contact2,text,education , skill1, skill2, skill3, playerid, location, tournament1, tournament2, device, infoid) => {
     // API Call 
-    const response = await fetch("http://localhost:5000/updateinfo", {
+    const response = await fetch(`${port}/updateinfo`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -206,7 +207,7 @@ const createinfo= async ( IngameName , RealName , game )=>{
 
   const follow = async (_id,RealName,IngameName,followerRealName,followerIngameName) => {
     // API Call 
-    const response = await fetch("http://localhost:5000/follow", {
+    const response = await fetch(`${port}/follow`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -234,9 +235,10 @@ getplayerinfo(_id);
    
   }
 
+
   const invite = async (_userid,RealName,IngameName,followerRealName,followerIngameName) => {
     // API Call 
-    const response = await fetch("http://localhost:5000/invite", {
+    const response = await fetch(`${port}/invite`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -267,7 +269,7 @@ getplayerinfo(_userid);
 
   const getfollowerslist= async (_id)=>{
  
-    const response = await fetch("http://localhost:5000/getplayerinfo", {
+    const response = await fetch(`${port}/getplayerinfo`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -282,7 +284,7 @@ getplayerinfo(_userid);
   
   const getfollowinglist= async (_id)=>{
  
-    const response = await fetch("http://localhost:5000/getplayerinfo", {
+    const response = await fetch(`${port}/getplayerinfo`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -298,7 +300,7 @@ getplayerinfo(_userid);
 
   const getnotification= async (_id)=>{
  
-    const response = await fetch("http://localhost:5000/getnotification", {
+    const response = await fetch(`${port}/getnotification`, {
       method: "GET",
       headers: {
         'Content-Type': 'application/json',
@@ -313,7 +315,7 @@ getplayerinfo(_userid);
   
 // const createinfo= async ( text , playerid , device)=>{
 
-//   const response = await fetch("http://localhost:5000/createinfo", {
+//   const response = await fetch(`${port}/createinfo", {
 //     method: "POST",
 //     headers: {
 //       "Content-Type": "application/json",
@@ -331,7 +333,7 @@ getplayerinfo(_userid);
 
 const getplayers= async ()=>{
  
-  const response = await fetch("http://localhost:5000/getplayers", {
+  const response = await fetch(`${port}/getplayers`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
