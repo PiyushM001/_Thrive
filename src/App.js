@@ -1,7 +1,7 @@
 import './App.css';
 import React, { useState } from 'react';
 import {
-  BrowserRouter as Router,
+  HashRouter as Router,
   Route,
   Routes
 } from 'react-router-dom';

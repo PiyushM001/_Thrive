@@ -1,5 +1,5 @@
 
-import React from "react";
+import React, { useEffect } from "react";
 import profile from "../Images/profileimg.png"
 import { pContext } from "../context/profilecontext";
 import { useContext } from "react";
@@ -8,11 +8,24 @@ export default function Notifycomp(props) {
  
     const a=useContext(pContext);
    
+    
 
-    const {acceptinvite}= a;
+    const {acceptinvite,getinfo, getplayerinfo, playerinfo,followerIngameName,followerRealName } = a;
 
+  
+    // inviterRealName={value.followerRealName} inviterIngameName={value.followerIngameName}
+const _userid=props.inviteid
+const RealName=props.inviterRealName
+const IngameName=props.inviterIngameName
+useEffect(() => {
+ 
+   getinfo()
+ 
+}, []);
+
+console.log("userid",_userid)
     const acceptinvitefun = () => {
-    //    acceptinvite(_id,RealName,IngameName,followerRealName,followerIngameName);
+         acceptinvite(_userid,RealName,IngameName,followerRealName,followerIngameName);
       };
   return (
     <div className=" bg-[#202020] m-5 rounded-[10px] h-[5rem] flex items-center relative  ">
@@ -23,10 +36,10 @@ export default function Notifycomp(props) {
     <div className="w-[20%]"></div>
     <div className="w-[80%]">
 <div className="text-[#ffffff] font-mochiy-pop text-[4vw] font-thin ml-[6vw] m-1">
-              {props.IngameName} invited you to join team
+              {IngameName} invited you to join team
             </div>
             <div className=" font-medium text-[60%] h-[30%] flex items-center text-[#656565] ml-[6vw]">
-              {props.RealName}
+              {RealName}
             </div>
 <div onClick={acceptinvitefun} className="bg-[red] border-[1px] rounded-[10px] ">Accept Invite</div>
             </div>

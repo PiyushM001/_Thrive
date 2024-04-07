@@ -11,7 +11,6 @@ import yt from "../Images/yt3.png";
 import insta from "../Images/insta3.png";
 import { Link, useParams } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
-
 export default function Profilepagegames() {
   const { _id } = useParams();
   const a = useContext(pContext);
@@ -19,10 +18,10 @@ export default function Profilepagegames() {
   const {invite, infostate, playerinfo, getplayerinfo, follow, followbtntext,getinfo,followerIngameName,followerRealName } = a;
 
   useEffect(() => {
-    console.log("chal rha")
+    // console.log("chal rha")
     getplayerinfo(_id);
    
-     getinfo()
+    //  getinfo()
    
   }, []);
 

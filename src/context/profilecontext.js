@@ -6,8 +6,8 @@ import { useNavigate } from "react-router-dom";
 // require('dotenv').config();
 // const host = process.env.port
 export const  pContext = createContext();
-const port = "https://thrive-backend-o6k3.onrender.com"
-
+// const port = "https://thrive-backend-o6k3.onrender.com"
+const port = "http://localhost:5000"
 export default function   Profilecontext(props) {
   // const localtoken2 = localStorage.getItem("token");
   // const localtoken = localtoken2.match(/"(.*?)"/)[1];
@@ -34,8 +34,9 @@ if (localtoken2) {
   const bb=[]
   const [followingarray,setfollowingarray]=useState(bb)
   const cc=[]
-  const [notificationarray,setnotificationarray]=useState(bb)
-
+  const [notificationarray,setnotificationarray]=useState(cc)
+  const dd=[]
+  const [teamarray,setteamarray]=useState(dd)
  const info=[]
 const [ infostate , setinfostate ]=useState(info);
 const userinfo = [];
@@ -61,10 +62,12 @@ let navigate = useNavigate();
  const getinfo= async ()=>{
  
   const response = await fetch(`${port}/getinfo`, {
-    method: "GET",
+    method: "POST",
     headers: {
       "Content-Type": "application/json",
       "token":localtoken
+      // "token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjYwNDI3NjExMDllMDkwZDFiN2RiMTRhIn0sImlhdCI6MTcxMTU0ODI1N30.QvddnhBp70FoZklQktEulbxCabHz6xKhRxiEBBnZU2A"
+      // "token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjYxMTQzYTY4YTdkZDhmNmJiM2Y2NDhmIn0sImlhdCI6MTcxMjQ3MTc4N30.Sorq9yPPBLVBw8HgIAYU7uV1ojwri6ckKAOUDihUZqw"
     },
  
   }).catch((err) => {
@@ -73,6 +76,7 @@ let navigate = useNavigate();
   })
   const data = await response.json() 
   setinfostate(data)
+  console.log("dataa222",localtoken2)
   setfollowerRealName(data[0].RealName)
 setfollowerIngameName (data[0].IngameName)
 
@@ -251,6 +255,36 @@ getplayerinfo(_id);
       const p = await response.text();
 
       if (response.ok) {
+// getplayerinfo(_userid);
+        toast.success(p);
+
+      } else {
+        toast.error(p);
+      }
+      // toast(res.json())
+    })
+    .catch((err) => {
+      toast(err);
+      console.log(err);
+    });
+   
+  }
+
+  const acceptinvite = async (_userid,RealName,IngameName,followerRealName,followerIngameName) => {
+    // API Call 
+    const response = await fetch(`${port}/team`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        "token":localtoken
+      },
+      body: JSON.stringify({_userid,RealName,IngameName,followerRealName,followerIngameName})
+    }).then(async (response) => {
+      // const st = await response.text();
+      // console.log("yedekh kedfhdfhdfhfghdshgdfshdf",response.text())
+      const p = await response.text();
+
+      if (response.ok) {
 getplayerinfo(_userid);
         toast.success(p);
 
@@ -309,10 +343,23 @@ getplayerinfo(_userid);
   
     });
     const data = await response.json() 
-    console.log("notifi",data.invitinguser);
+    // console.log("notifi",data.invitinguser);
      setnotificationarray(data.invitinguser)
   }
+  const getteam= async (_id)=>{
+ 
+    const response = await fetch(`${port}/getnotification`, {
+      method: "GET",
+      headers: {
+        'Content-Type': 'application/json',
+        "token":localtoken
+      },
   
+    });
+    const data = await response.json() 
+    // console.log("notifi",data.invitinguser);
+     setteamarray(data.team)
+  }
 // const createinfo= async ( text , playerid , device)=>{
 
 //   const response = await fetch(`${port}/createinfo", {
@@ -349,7 +396,7 @@ const getplayers= async ()=>{
 // getfollowinglist,getfollowerslist
   return (
     
-        <pContext.Provider value={ {notificationarray,createteam, getnotification,invite, playerinfo2,infostate, getinfo  , getplayerinfo ,playerinfo,createinfo,users,updateinfo,getplayers,follow ,followbtntext,followingarray,followersarray,followerRealName ,followerIngameName, getfollowinglist,getfollowerslist} }>
+        <pContext.Provider value={ {notificationarray,teamarray,getteam,acceptinvite,createteam, getnotification,invite, playerinfo2,infostate, getinfo  , getplayerinfo ,playerinfo,createinfo,users,updateinfo,getplayers,follow ,followbtntext,followingarray,followersarray,followerRealName ,followerIngameName, getfollowinglist,getfollowerslist} }>
       {props.children}
     </pContext.Provider>
    

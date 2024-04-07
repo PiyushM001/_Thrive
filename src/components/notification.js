@@ -4,12 +4,13 @@ import Followcomp from './notifycomp';
 import { pContext } from "../context/profilecontext";
 import { useContext } from "react";
 import { Link, useParams } from "react-router-dom";
-
+import { ToastContainer } from "react-toastify";
 export default function Notificationpage  () {
 
     const { _id } = useParams();
     const a=useContext(pContext);
    
+    
 
      const {notificationarray,getnotification}= a;
     useEffect(() => {
@@ -17,11 +18,14 @@ export default function Notificationpage  () {
       
     
   }, []);
+
+
 // const arr = playerinfo.following;
   return (
-   <div className="bg-[#000000] w-[100%] h-[100vh] overflow-y-scroll">
+   <div className="bg-[#000000] w-[100%] h-[100vh] overflow-y-scroll"><ToastContainer />
+
 {notificationarray.map((value)=>(
-                <Followcomp key={value.id} RealName={value.followerRealName} IngameName={value.followerIngameName} />
+                <Followcomp key={value.id} inviteid={value.id} inviterRealName={value.followerRealName} inviterIngameName={value.followerIngameName} />
                 ))}
    </div>
   )
