@@ -6,8 +6,8 @@ import { useNavigate } from "react-router-dom";
 // require('dotenv').config();
 // const host = process.env.port
 export const  pContext = createContext();
-// const port = "https://thrive-backend-o6k3.onrender.com"
-const port = "http://localhost:5000"
+const port = "https://thrive-backend-o6k3.onrender.com"
+// const port = "http://localhost:5000"
 export default function   Profilecontext(props) {
   // const localtoken2 = localStorage.getItem("token");
   // const localtoken = localtoken2.match(/"(.*?)"/)[1];

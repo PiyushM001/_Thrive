@@ -5,8 +5,8 @@ import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 export const sContext = createContext();
-// const port = "https://thrive-backend-o6k3.onrender.com"
-const port = "http://localhost:5000"
+const port = "https://thrive-backend-o6k3.onrender.com"
+// const port = "http://localhost:5000"
 
 export default function Signcontext(props) {
   const host = "localhost:5000";
