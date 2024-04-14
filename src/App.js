@@ -29,6 +29,7 @@ import Ownprofilepage3 from './components/ownprofilepage3';
 import Ownprofilepage2 from './components/ownprofilepage2';
 import Notificationpage from './components/notification';
 import Teamnameform from './components/teamnameform';
+import Skillform from './components/Skillform';
 
 function App() {
 
@@ -57,7 +58,6 @@ function App() {
         <Route path="/post" element={ <Postpage/> } />
         <Route path="/ProfileForm" element={ <Profileform/> } />
         <Route path="/login" element={ <Login/> } />
-        <Route path="/team" element={ <Teampage/> } />
 
         <Route path="/signup" element={ <Signup/> } />
         <Route path="/aftersignupform" element={ <Aftersignupform/> } />
@@ -66,7 +66,11 @@ function App() {
         <Route path="/skillsform" element={ <Skillsform/> } />
         <Route path="/notification" element={ <Notificationpage/> } />
         {/* <Route path="/post" element={ <Postpage/> } /> */}
-        <Route path="/teamnameform" element={ <Teamnameform/> } />
+        {/* <Route path="/team" element={ <Teampage/> } /> */}
+
+        <Route path="/team" element={ <Teamnameform/> } />
+        <Route path="/skillform" element={ <Skillform/> } />
+
       </Routes>
       </Profilecontext>  </Signcontext>
 

@@ -15,7 +15,7 @@ import { Link, useParams } from "react-router-dom";
 
 export default function Profilepagegames() {
   const { _id } = useParams();
-  console.log("dekh", _id )
+  // console.log("dekh", _id )
   const a=useContext(pContext);
 
 

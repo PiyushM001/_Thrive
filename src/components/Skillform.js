@@ -4,7 +4,6 @@ import { useContext } from "react";
 import 'react-toastify/dist/ReactToastify.css';
 
 import { ToastContainer, toast } from 'react-toastify';
-import Footer from './footer';
 function Skillform() {
     const [teamname, setteamname]=useState("")
    
@@ -19,14 +18,13 @@ function Skillform() {
 
 const localtoken = localStorage.getItem("token");
 
-  const handleaftersignup=()=>{
-    // e.preventDefault();
+  const handleaftersignup=(e)=>{
+    e.preventDefault();
    
-    //  createteam(teamname)
+     createteam(teamname)
   }
   return (
-    <>
-    <section class=" bg-[#1b1b1b] h-[90vh] flex items-center"><ToastContainer/>
+    <section class=" bg-[#1b1b1b] h-[100vh] flex items-center"><ToastContainer/>
   <div class="flex flex-col items-center justify-center px-2 py-4 mx-auto md:h-screen lg:py-0 w-[85%]">
       
       <div class="w-full bg-[#2f2f2f] rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0  ">
@@ -36,8 +34,8 @@ const localtoken = localStorage.getItem("token");
               </h1>
               <form class="space-y-4 md:space-y-6" action="#">
                   <div>
-                      <label for="teamname" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Make Your Team</label>
-                      <input type="teamname" name="teamname" id="teamname" value={teamname} onChange={e => setteamname(e.target.value)}  class="bg-gray-50 border border-gray-300 text-[#ffffff] sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 bg-[#555555]" placeholder="Team Name.." required=""/>
+                      <label for="teamname" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Skill</label>
+                      <input type="teamname" name="teamname" id="teamname" value={teamname} onChange={e => setteamname(e.target.value)}  class="bg-gray-50 border border-gray-300 text-[#ffffff] sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 bg-[#555555]" placeholder="" required=""/>
                   </div>
                   {/* <div>
                       <label for="RealName" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your Full Name</label>
@@ -51,15 +49,13 @@ const localtoken = localStorage.getItem("token");
                      
                       {/* <a href="#" class="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500">Forgot RealName?</a> */}
                   </div>
-                  <button type="submit" onClick={handleaftersignup} class="w-full bg-[#6dff66] text-[#000000] bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 border-[2px] border-[#000000] font-mochiy-pop ">Submit</button>
+                  <button type="submit" onClick={handleaftersignup} class="w-full bg-[#6dff66] text-[#000000] bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 border-[2px] border-[#000000] ">Add</button>
                  
               </form>
           </div>
       </div>
   </div>
 </section>
-<Footer/>
-</>
   );
 }
 

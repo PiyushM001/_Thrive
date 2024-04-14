@@ -15,12 +15,12 @@ export default function Profilepagegames() {
   const { _id } = useParams();
   const a = useContext(pContext);
 
-  const {invite, infostate, playerinfo, getplayerinfo, follow, followbtntext,getinfo,followerIngameName,followerRealName } = a;
+  const {invite,checkfollow,checkfollowstate, infostate, playerinfo, getplayerinfo, follow, followbtntext,getinfo,followerIngameName,followerRealName } = a;
 
   useEffect(() => {
     // console.log("chal rha")
     getplayerinfo(_id);
-   
+    checkfollow(_id)
     //  getinfo()
    
   }, []);
@@ -48,6 +48,8 @@ export default function Profilepagegames() {
   const tournaments = 0;
   const device = playerinfo.device;
   const text = playerinfo.text;
+  
+
   const playerid = playerinfo.playerid;
 
 const skill1=playerinfo.skill1;
@@ -84,7 +86,7 @@ const tournament2=playerinfo.tournament2;
                 onClick={handlec}
                 className="flex justify-center items-center text-[#000000] bg-[#B4FF16] border-[#B4FF16] border-[2px] w-[30%] h-[50%] font-medium  rounded-[10px] text-[3vw] p-[3px] mr-[10px]"
               >
-                {followbtntext}
+                {checkfollowstate}
               </div>
               <div  onClick={handleinvite}  className="flex justify-center items-center text-[#ffffff] border-[#B4FF16] border-[2px] w-[30%] h-[50%] font-medium rounded-[10px] text-[3vw] p-[3px]">
               Invite

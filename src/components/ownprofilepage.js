@@ -1,9 +1,14 @@
-import React, { useEffect } from "react";
+import React, { useState,useEffect } from 'react';
+import { Transition } from '@headlessui/react';
+
 import Footer from "./footer";
 import profilebg from "../Images/profile_bg.png";
 import profilep from "../Images/profilep.png";
 import editicon from "../Images/edit-icon.svg";
-import posticon from "../Images/posticon.png";
+import settings from "../Images/Settings.svg";
+import cross from "../Images/cross.svg";
+
+import posticon from "../Images/posticon.svg";
 import plusicon from "../Images/plusicon2.png";
 
 
@@ -22,15 +27,15 @@ import { ToastContainer } from "react-toastify";
 
 export default function Ownprofilepage() {
   let navigate = useNavigate();
-
+  const [isOpen, setIsOpen] = useState(false);
   const a=useContext(pContext);
 
 
-  const {info,getinfo,addinfo,infostate }= a;
-  
+  const {info,ownid,getinfo,addinfo,infostate }= a;
+  const  _id  = ownid
   useEffect(()=>{
 getinfo();
-  }, [])
+}, [])
 
 
   const logoutfun=()=>{
@@ -38,14 +43,48 @@ getinfo();
     localStorage.setItem("token", "");
 
   }
+ 
 
-  const handlec=()=>{
-  }
+  // const handlec=()=>{
+  // }
 
   return (
     <>
     {infostate.map((value)=>(
       <div className="bg-[#000000] w-full h-[90vh] overflow-y-scroll"><ToastContainer/>
+       <Transition
+          show={isOpen}
+          enter="transition-opacity duration-300"
+          enterFrom="opacity-0"
+          enterTo="opacity-100"
+          leave="transition-opacity duration-300"
+          leaveFrom="opacity-100"
+          leaveTo="opacity-0"
+        >
+          <div className="fixed inset-0 bg-black opacity-50"></div>
+        </Transition>
+
+        {/* Sliding menu */}
+        <Transition
+          show={isOpen}
+          enter="transform transition duration-300"
+          enterFrom="translate-x-full"
+          enterTo="translate-x-0"
+          leave="transform transition duration-300"
+          leaveFrom="translate-x-0"
+          leaveTo="translate-x-full"
+        >
+          <div className="fixed inset-y-0 right-0 flex flex-col w-64 shadow-xl bg-[#0c0c0c]  z-[2]">
+            {/* Your menu content here */}
+            <div className="w-[100%] flex justify-end ">
+              <img  onClick={() => setIsOpen(!isOpen)} className='w-[1.7rem] m-3' src={cross}></img>
+            </div>
+            <div className="w-[100%] mt-1 bg-[#0c0c0c] border-b-[1px] border-[#222222] ">
+            <div className="h-[5rem] w-[100%] flex justify-center  items-center">
+            <button onClick={logoutfun} className="  text-[#828282] text-[5vw]">Logout</button></div>
+          </div>
+          </div>
+        </Transition>
         <div>
           <div  >
             <img className="w-[100vw] h-[6rem]" src={profilebg}></img>
@@ -59,7 +98,9 @@ getinfo();
             <div className="flex w-[60%] justify-end ">
             <Link className="m-2"  to='/ProfileForm'><img src={editicon}></img></Link>  
 
-            <Link className="m-2" to='/post'><img src={posticon}></img></Link>  
+            <Link className="  flex justify-center items-center " to='/post'><img className="w-[1.2rem]" src={posticon}></img></Link>  
+            <div className=" mr-[0.6rem] ml-[0.6rem] flex justify-center items-center " ><img   onClick={() => setIsOpen(!isOpen)} className="w-[1.2rem]" src={settings}></img></div>  
+
               {/* <div className="flex justify-center items-center text-[#000000] bg-[#B4FF16] border-[#B4FF16] border-[2px] w-[30%] h-[50%] font-medium  rounded-[10px] text-[3vw] p-[3px] mr-[10px]">
                 follow
               </div>
@@ -88,15 +129,15 @@ getinfo();
 
           <div className="flex h-[4rem] justify-evenly items-center">
             <div className="flex w-[94%] h-[4rem] justify-evenly items-center">
-              <div className="bg-[#121212] w-[30%] h-[2.5rem] flex flex-col justify-center items-center text-[#a7a7a7] rounded-[10px] text-[3.5vw]">
+            <Link  to={`/followers/${_id}`} className="bg-[#121212] w-[30%] h-[2.5rem] flex flex-col justify-center items-center text-[#a7a7a7] rounded-[10px] text-[3.5vw]">
                 <div>Followers</div>
                 <div>{value.followersCount}</div>
-              </div>
+              </Link>
 
-              <div className="bg-[#121212] w-[30%] h-[2.5rem] flex flex-col justify-center items-center text-[#a7a7a7] rounded-[10px] text-[3.5vw]">
+              <Link to={`/following/${_id}`}  className="bg-[#121212] w-[30%] h-[2.5rem] flex flex-col justify-center items-center text-[#a7a7a7] rounded-[10px] text-[3.5vw]">
                 <div>Following</div>
                 <div>{value.followingCount}</div>
-              </div>
+              </Link>
 
               <div className="bg-[#121212] w-[30%] h-[2.5rem] flex flex-col justify-center items-center text-[#a7a7a7] rounded-[10px] text-[3.5vw]">
                 <div>Tournaments</div>
@@ -316,10 +357,7 @@ getinfo();
 
 
 
-          <div className="w-[90%] mt-1 bg-[#0c0c0c] border-b-[1px] border-[#222222] ">
-            <div className="h-[5rem] w-[100%] flex  items-center">
-            <button onClick={logoutfun} className="border-[2px] border-[#B4FF16] rounded-[10px] pl-2 pr-2 pt-1 pb-1 text-[#ffffff] text-[3vw]">logout</button></div>
-          </div>
+         
 
 
         </div>
