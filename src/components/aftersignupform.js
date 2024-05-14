@@ -2,7 +2,7 @@ import React,{useState} from 'react';
 import { pContext } from "../context/profilecontext";
 import { useContext } from "react";
 import 'react-toastify/dist/ReactToastify.css';
-
+import loadinggif from '../Images/loading.gif'
 import { ToastContainer, toast } from 'react-toastify';
 function Aftersignupform() {
     const [IngameName, setIngameName]=useState("")
@@ -12,6 +12,23 @@ function Aftersignupform() {
     const a=useContext(pContext);
   const {createinfo}= a;
 
+
+
+  const [loading, setLoading] = useState(false);
+
+  const handleaftersignup = async (e) => {
+    e.preventDefault();
+    setLoading(true); // Start loading
+
+    try {
+      await createinfo(IngameName,RealName,game)
+      // Do something after team creation
+    } catch (error) {
+      // Handle error if necessary
+    } finally {
+      setLoading(false); // Stop loading
+    }
+  };
 // export const navigationfun = () => {
 
 //     navigate("/");
@@ -19,13 +36,10 @@ function Aftersignupform() {
 
 const localtoken = localStorage.getItem("token");
 
-  const handleaftersignup=(e)=>{
-    e.preventDefault();
-   
-     createinfo(IngameName,RealName,game)
-  }
+
   return (
     <section class="bg-gray-50 dark:bg-gray-900 h-[100vh] flex items-center"><ToastContainer/>
+   {loading && <div className='absolute w-full inset-0 opacity-90 fill-neutral-950'><div className='h-[30vh] bg-[#000000]'></div><img className='' src={loadinggif}></img><div className='h-[30vh] bg-[#000000]'></div></div>}
   <div class="flex flex-col items-center justify-center px-2 py-4 mx-auto md:h-screen lg:py-0 w-[85%]">
       
       <div class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">

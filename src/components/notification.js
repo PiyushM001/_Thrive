@@ -27,7 +27,7 @@ export default function Notificationpage  () {
  <div className="bg-[#0e0e0e] w-[100%] h-[90vh] overflow-y-scroll"><ToastContainer />
 
 {notificationarray.map((value)=>(
-                <Followcomp key={value.id} inviteid={value.id} inviterRealName={value.followerRealName} inviterIngameName={value.followerIngameName} />
+                <Followcomp key={value.id} inviterteamname={value.teamname} inviteid={value.id} inviterRealName={value.followerRealName} inviterIngameName={value.followerIngameName} />
                 ))}
 
    </div>

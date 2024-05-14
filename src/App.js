@@ -66,9 +66,9 @@ function App() {
         <Route path="/skillsform" element={ <Skillsform/> } />
         <Route path="/notification" element={ <Notificationpage/> } />
         {/* <Route path="/post" element={ <Postpage/> } /> */}
-        {/* <Route path="/team" element={ <Teampage/> } /> */}
+        <Route path="/team" element={ <Teampage/> } />
 
-        <Route path="/team" element={ <Teamnameform/> } />
+        {/* <Route path="/team" element={ <Teamnameform/> } /> */}
         <Route path="/skillform" element={ <Skillform/> } />
 
       </Routes>

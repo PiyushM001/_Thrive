@@ -47,7 +47,7 @@ const [users, setusers] = useState(userinfo);
 const [playerinfo , setplayerinfo]=useState(infoplayer)
 const [playerinfo2 , setplayerinfo2]=useState(infoplayer2)
 const [ownid , setownid]=useState("")
-
+const [teamname, setteamname]=useState(" ")
 const [followerRealName , setfollowerRealName]=useState("")
 const [followerIngameName , setfollowerIngameName]=useState("")
 const [ checkfollowstate , setcheckfollowstate ]=useState("Follow");
@@ -55,11 +55,6 @@ const [ checkfollowstate , setcheckfollowstate ]=useState("Follow");
 
   
 let navigate = useNavigate();
-
-
-
-
-
 
  const getinfo= async ()=>{
  
@@ -87,7 +82,30 @@ setfollowerIngameName (data[0].IngameName)
 
 }
 
+const getteaminfo= async ()=>{
+ 
+  const response = await fetch(`${port}/getteaminfo`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      "token":localtoken
+      // "token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjYwNDI3NjExMDllMDkwZDFiN2RiMTRhIn0sImlhdCI6MTcxMTU0ODI1N30.QvddnhBp70FoZklQktEulbxCabHz6xKhRxiEBBnZU2A"
+      // "token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjYxMTQzYTY4YTdkZDhmNmJiM2Y2NDhmIn0sImlhdCI6MTcxMjQ3MTc4N30.Sorq9yPPBLVBw8HgIAYU7uV1ojwri6ckKAOUDihUZqw"
+    },
+ 
+  }).catch((err) => {
+    toast(err);
+    
+  })
+  const data = await response.json() 
+  // setinfostate(data)
+  // setownid(data[0]._id)
+  // setownid(data[0]._id)
+  // localStorage.setItem("infoid", data[0]._id);
 
+  setteamname(data[0].teamname)
+  // console.log(data[0].teamname)
+}
 
 // const getplayerinfo= async (_id)=>{
  
@@ -197,9 +215,13 @@ const createinfo= async ( IngameName , RealName , game )=>{
     toast(err);
   });}
 
+
+
+
+
   const createteam= async ( teamname )=>{
     const response = await fetch(`${port}/createteam`, {
-      method: "POST",
+      method: "PUT",
       headers: {
         "Content-Type": "application/json",
         "token":localtoken
@@ -212,7 +234,7 @@ const createinfo= async ( IngameName , RealName , game )=>{
       if (response.ok) {
         toast.success("submission Successful");
          localStorage.setItem("teamid", x._id);
-       navigate("/team")
+       navigate("/team_page")
       } else {
         toast.error("sdgds");
       }
@@ -319,7 +341,8 @@ setcheckfollowstate(p)
     });
    
   }
-  const invite = async (_userid,RealName,IngameName,followerRealName,followerIngameName) => {
+
+  const invite = async (_userid,RealName,IngameName,followerRealName,followerIngameName,teamname) => {
     // API Call 
     const response = await fetch(`${port}/invite`, {
       method: 'PUT',
@@ -327,7 +350,7 @@ setcheckfollowstate(p)
         'Content-Type': 'application/json',
         "token":localtoken
       },
-      body: JSON.stringify({_userid,RealName,IngameName,followerRealName,followerIngameName})
+      body: JSON.stringify({_userid,RealName,IngameName,followerRealName,followerIngameName,teamname})
     }).then(async (response) => {
       // const st = await response.text();
       // console.log("yedekh kedfhdfhdfhfghdshgdfshdf",response.text())
@@ -361,6 +384,35 @@ setcheckfollowstate(p)
     }).then(async (response) => {
       // const st = await response.text();
       // console.log("yedekh kedfhdfhdfhfghdshgdfshdf",response.text())
+      const p = await response.text();
+
+      if (response.ok) {
+getplayerinfo(_userid);
+        toast.success(p);
+
+      } else {
+        toast.error(p);
+      }
+      // toast(res.json())
+    })
+    .catch((err) => {
+      toast(err);
+      
+    });
+   
+  }
+
+  const ignoreinvite = async (_userid,RealName,IngameName,followerRealName,followerIngameName) => {
+    // API Call 
+    const response = await fetch(`${port}/ignoreinvite`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        "token":localtoken
+      },
+      body: JSON.stringify({ _userid,RealName,IngameName,followerRealName,followerIngameName})
+    }).then(async (response) => {
+    
       const p = await response.text();
 
       if (response.ok) {
@@ -425,6 +477,8 @@ getplayerinfo(_userid);
     // console.log("notifi",data.invitinguser);
      setnotificationarray(data.invitinguser)
   }
+
+
   const getteam= async (_id)=>{
  
     const response = await fetch(`${port}/getnotification`, {
@@ -437,7 +491,7 @@ getplayerinfo(_userid);
     });
     const data = await response.json() 
     // console.log("notifi",data.invitinguser);
-     setteamarray(data.team)
+     setteamarray(data)
   }
 // const createinfo= async ( text , playerid , device)=>{
 
@@ -475,7 +529,7 @@ const getplayers= async ()=>{
 // getfollowinglist,getfollowerslist
   return (
     
-        <pContext.Provider value={ {checkfollowstate,post, ownid ,checkfollow,notificationarray,teamarray,getteam,acceptinvite,createteam, getnotification,invite, playerinfo2,infostate, getinfo  , getplayerinfo ,playerinfo,createinfo,users,updateinfo,getplayers,follow ,followbtntext,followingarray,followersarray,followerRealName ,followerIngameName, getfollowinglist,getfollowerslist} }>
+        <pContext.Provider value={ {getteaminfo,ignoreinvite,teamname,checkfollowstate,post, ownid ,checkfollow,notificationarray,teamarray,getteam,acceptinvite,createteam, getnotification,invite, playerinfo2,infostate, getinfo  , getplayerinfo ,playerinfo,createinfo,users,updateinfo,getplayers,follow ,followbtntext,followingarray,followersarray,followerRealName ,followerIngameName, getfollowinglist,getfollowerslist} }>
       {props.children}
     </pContext.Provider>
    

@@ -88,8 +88,11 @@ export default function Tournamentpage() {
   return (
     <div className='flex flex-col h-[100vh] w-full'>
       <Header/>
+     
       <div className='flex w-full h-[80vh] flex-col items-center bg-[#000000] overflow-y-scroll '>
-  
+      <div className='w-full bg-[#000000]'>
+        <div className='border-[2px] border-[#5e5e5e] flex justify-center items-center w-[20%] rounded-[10px] bg-[#ff000000] ml-4 mt-2 mb-2 text-[#8e8e8e]'>Filter</div>
+      </div>
       {information.map((value) => (
                       <Tournament 
                         key={value.id}

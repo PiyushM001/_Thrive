@@ -24,6 +24,9 @@ module.exports = {
     "./src/components/Skillform.js",
     "./src/components/post.js",
     "./src/components/post_page.js",
+    "./src/components/teamnameform.js",
+    "./src/components/teamcomp.js",
+
 
 
 

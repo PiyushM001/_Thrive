@@ -15,21 +15,22 @@ export default function Profilepagegames() {
   const { _id } = useParams();
   const a = useContext(pContext);
 
-  const {invite,checkfollow,checkfollowstate, infostate, playerinfo, getplayerinfo, follow, followbtntext,getinfo,followerIngameName,followerRealName } = a;
+  const {invite,checkfollow,checkfollowstate,teamname, getteaminfo,infostate, playerinfo, getplayerinfo, follow, followbtntext,getinfo,followerIngameName,followerRealName } = a;
 
   useEffect(() => {
     // console.log("chal rha")
     getplayerinfo(_id);
-    checkfollow(_id)
-    //  getinfo()
-   
+    checkfollow(_id);
+    
+    getinfo()
+   getteaminfo()
   }, []);
 
   const RealName = playerinfo.RealName;
   // console.log("infostate",infostate)
   // console.log("playerinfo",playerinfo)
   const IngameName = playerinfo.IngameName;
-  
+  console.log("teamname teamname",teamname)
   // const followerRealName = infostate[0].RealName;
   // const followerIngameName = infostate[0].IngameName;
   const _userid=playerinfo.user;
@@ -37,7 +38,7 @@ export default function Profilepagegames() {
     follow(_id,RealName,IngameName,followerRealName,followerIngameName);
   };
   const handleinvite = () => {
-    invite(_userid,RealName,IngameName,followerRealName,followerIngameName);
+    invite(_userid,RealName,IngameName,followerRealName,followerIngameName,teamname);
   };
   // about,contact,contact2,text,education , skill1, skill2, skill3, playerid, location, tournament1, tournament2,  infoid
   
@@ -80,14 +81,18 @@ const tournament2=playerinfo.tournament2;
             <div className="absolute left-0 bottom-0">
               <img className="w-[35vw]" src={profilep}></img>
             </div>
-            <div className="w-[40%]"></div>
-            <div className="flex w-[50%] justify-start ">
+            <div className="w-[35%]"></div>
+            <div className="flex w-[60%] justify-start ">
+
+            <div className="w-[20%] border-[red] border-[2px] flex justify-center items-center rounded-[5px] ml-1 mr-8 font-mochiy-pop text-[2.5vw] text-[#ffffff] ">live</div>
+
               <div
                 onClick={handlec}
-                className="flex justify-center items-center text-[#000000] bg-[#B4FF16] border-[#B4FF16] border-[2px] w-[30%] h-[50%] font-medium  rounded-[10px] text-[3vw] p-[3px] mr-[10px]"
+                className="flex justify-center items-center text-[#000000] bg-[#B4FF16] border-[#B4FF16] border-[2px] w-[30%] h-[50%] font-medium  rounded-[10px] text-[3vw] p-[3px] mr-[6px]"
               >
                 {checkfollowstate}
               </div>
+              
               <div  onClick={handleinvite}  className="flex justify-center items-center text-[#ffffff] border-[#B4FF16] border-[2px] w-[30%] h-[50%] font-medium rounded-[10px] text-[3vw] p-[3px]">
               Invite
               </div>

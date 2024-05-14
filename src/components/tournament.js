@@ -3,7 +3,7 @@ import profile from '../Images/profile.svg';
 
 export default function Tournament(props) {
   return (
-    <div className='w-[90%]  bg-[#222222] m-2 rounded-[10px] '>
+    <div className='w-[90%]  bg-[#1b1b1b] m-2 rounded-[10px] border-[1px] border-[#383838] '>
 
 
 
@@ -18,7 +18,7 @@ export default function Tournament(props) {
           <div className=' font-medium text-[60%] h-[30%] flex items-center text-[#656565]'>{props.description}</div>
           </div>
         <div className='w-[30%] flex justify-center items-center '> 
-        <div className='flex justify-center items-center text-[#000000] bg-[#B4FF16]  w-[70%] h-[40%] font-mochiy-pop rounded-[10px] text-[3.3vw]'>{props.entryfee}</div>
+        <div className='flex justify-center items-center text-[#000000] bg-[#b5ff16]   w-[70%] h-[40%] font-mochiy-pop rounded-[10px] text-[3.3vw]'>{props.entryfee}</div>
         </div>
 
       </div>
