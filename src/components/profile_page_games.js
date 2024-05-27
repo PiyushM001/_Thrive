@@ -1,4 +1,9 @@
-import React, { useEffect } from "react";
+import * as React from 'react';
+import { useEffect,useState } from "react";
+
+import './components.css'
+
+
 import Footer from "./footer";
 import profilebg from "../Images/profile_bg.png";
 import profilep from "../Images/profilep.png";
@@ -15,7 +20,7 @@ export default function Profilepagegames() {
   const { _id } = useParams();
   const a = useContext(pContext);
 
-  const {invite,checkfollow,checkfollowstate,teamname, getteaminfo,infostate, playerinfo, getplayerinfo, follow, followbtntext,getinfo,followerIngameName,followerRealName } = a;
+  const {invite, skillsarray, checkfollow, checkfollowstate,teamname, getteaminfo,infostate, playerinfo, getplayerinfo, follow, followbtntext,getinfo,followerIngameName,followerRealName } = a;
 
   useEffect(() => {
     // console.log("chal rha")
@@ -53,9 +58,7 @@ export default function Profilepagegames() {
 
   const playerid = playerinfo.playerid;
 
-const skill1=playerinfo.skill1;
-const skill2=playerinfo.skill2;
-const skill3=playerinfo.skill3;
+
 
 const tournament1=playerinfo.tournament1;
 const tournament2=playerinfo.tournament2;
@@ -65,12 +68,13 @@ const tournament2=playerinfo.tournament2;
 
 
 
-
-
   return (
     <>
-      <div className="bg-[#000000] w-full h-[90vh] overflow-y-scroll">
+      <div 
+      className=" bg-gradient-to-r from-[#000000] to-[#111111] w-full h-[90vh] overflow-y-scroll ">
         <ToastContainer />
+
+
         <div>
           <div>
             <img className="w-[100vw] h-[6rem]" src={profilebg}></img>
@@ -109,24 +113,24 @@ const tournament2=playerinfo.tournament2;
             <div className="text-[#ffffff] font-mochiy-pop text-[5vw] font-thin ml-[5vw]">
               {IngameName}
             </div>
-            <div className=" font-medium text-[60%] h-[30%] flex items-center text-[#656565] ml-[5vw]">
+            <div className=" font-medium text-[3vw] h-[30%] flex items-center text-[#656565] ml-[5vw]">
               {RealName}
             </div>
           </div>
 
-          <div className="flex h-[4rem] justify-evenly items-center">
+          <div className="flex h-[5rem] justify-evenly items-center">
             <div className="flex w-[94%] h-[4rem] justify-evenly items-center">
-              <Link  to={`/followers/${_id}`} className="bg-[#121212] w-[30%] h-[2.5rem] flex flex-col justify-center items-center text-[#a7a7a7] rounded-[10px] text-[3.5vw]">
+              <Link  to={`/followers/${_id}`} className=" border-[1px] border-[#353535] w-[30%] h-[3rem] flex flex-col justify-center items-center text-[#a7a7a7] rounded-[10px] text-[3.5vw]">
                 <div>Followers</div>
                 <div>{followersCount}</div>
               </Link>
 
-              <Link to={`/following/${_id}`}  className="bg-[#121212] w-[30%] h-[2.5rem] flex flex-col justify-center items-center text-[#a7a7a7] rounded-[10px] text-[3.5vw]">
-                <div>Following</div>
+              <Link to={`/following/${_id}`}  className="  border-[1px] border-[#353535] w-[30%] h-[3rem] flex flex-col justify-center items-center text-[#a7a7a7] rounded-[10px] text-[3.5vw]">
+                <div>Allies</div>
                 <div>{followingCount}</div>
               </Link>
 
-              <div className="bg-[#121212] w-[30%] h-[2.5rem] flex flex-col justify-center items-center text-[#a7a7a7] rounded-[10px] text-[3.5vw]">
+              <div className=" w-[30%] h-[3rem] border-[1px] border-[#353535] flex flex-col justify-center items-center text-[#a7a7a7] rounded-[10px] text-[3.5vw]">
                 <div>Tournaments</div>
                 <div>0</div>
               </div>
@@ -134,8 +138,12 @@ const tournament2=playerinfo.tournament2;
           </div>
         </div>
 
-        <div className="bg-[#090909] h-[3rem] flex  items-center justify-center">
-          <div className="bg-[#090909] w-[90%] h-[2rem] flex justify-evenly">
+
+
+
+
+        <div className=" bg-gradient-to-r from-[#0a0a0a] to-[#0fafb813] h-[3rem] flex  items-center justify-center">
+          <div className="bg-[#09090900] w-[90%] h-[2.8rem] flex justify-evenly">
             <Link
               className="border-r-[2px]  border-[#222222] border-b-[2px] border-b-[#B4FF16] shadow-b-inner shadow-[#B4FF16] w-full flex justify-center items-center"
               to={`/profile/${_id}`}
@@ -168,33 +176,30 @@ const tournament2=playerinfo.tournament2;
 
 
      
+   
 
 
 
-
-
-        <div className="w-full flex flex-col justify-center items-center bg-[#0c0c0c]   ">
-
-
+        <div className="w-full flex flex-col justify-center items-center bg-[#0a0a0a]   ">
 
 
 
           
-        <div  className="w-[90%] mt-1 bg-[#0c0c0c] border-b-[1px] border-[#222222] ">
-            <div className="text-[#ffffff] ml-3 mt-2">About</div>
-            <div className="text-[#959595] ml-3 mb-3 font-thin text-[3vw] from-inherit ">
+        <div  className="w-[100%]  bg-gradient-to-r from-[#000000] to-[#0fafb813] mt-1  border-[1px]  border-[#262626]    ">
+            <div className="text-[#00fbff] ml-7 mt-2">About</div>
+            <div className="text-[#959595] mt-1 ml-7 mb-2 font-thin text-[3vw] from-inherit ">
             {text}
             </div>
           </div>
-          <div className="w-[90%] mt-1 bg-[#0c0c0c] border-b-[1px] border-[#222222] ">
-            <div className="text-[#ffffff] ml-3 mt-2">Player-ID</div>
-            <div className="text-[#959595] m-3 font-light text-[3.5vw] from-inherit ">
+          <div className="w-[100%]  bg-gradient-to-r from-[#000000] to-[#0fafb813] mt-1  border-[1px]  border-[#262626]     ">
+            <div className="text-[#00fbff] ml-7 mt-2">Player-ID</div>
+            <div className="text-[#959595]  mt-1 ml-7 mb-2 font-light text-[3.5vw] from-inherit ">
               {playerid}
             </div>
           </div>
-          <div className="w-[90%] mt-1 bg-[#0c0c0c] border-b-[1px] border-[#222222] ">
-            <div className="text-[#ffffff] ml-3 mt-2">Device</div>
-            <div className="text-[#959595] m-3 font-light text-[3.5vw] from-inherit ">
+          <div className="w-[100%]  bg-gradient-to-r from-[#000000] to-[#0fafb813] mt-1   border-[1px]  border-[#262626]     ">
+            <div className="text-[#00fbff] ml-7 mt-2">Device</div>
+            <div className="text-[#959595]  mt-1 ml-7 mb-2   font-light text-[3.5vw] from-inherit ">
               {device}
             </div>
           </div>
@@ -206,13 +211,13 @@ const tournament2=playerinfo.tournament2;
           
           </div> */}
           {/* <div className="w-[90%] mt-1 bg-[#0c0c0c] border-b-[1px] border-[#222222] ">
-            <div className="text-[#ffffff] ml-3 mt-2">Device</div>
+            <div className="text-[#ffffff] ml-5 mt-2">Device</div>
             <div className="text-[#959595] m-3 font-light text-[3.5vw] from-inherit ">
               {device}
             </div> */}
           {/* </div> */}
           {/* <div className="w-[90%] mt-1 bg-[#0c0c0c] border-b-[1px] border-[#222222] ">
-            <div className="text-[#ffffff] ml-3 mt-2">Player-ID</div>
+            <div className="text-[#ffffff] ml-5 mt-2">Player-ID</div>
             <div className="text-[#959595] m-3 font-light text-[3.5vw] from-inherit ">
               {playerid}
             </div>
@@ -235,20 +240,26 @@ const tournament2=playerinfo.tournament2;
 
 
 
+<div className="w-[100%] mt-1   bg-gradient-to-r from-[rgb(0,0,0)] to-[#0fafb813]  border-[1px]  border-[#262626]     ">
+          <div className="w-full flex mt-3 ">
+            <div className="text-[#00fbff] text-[1rem] ml-7   flex items-center">Skills</div>
 
+            </div>
+            {skillsarray.map((val)=>(
+                <div className="text-[#c4c4c4] w-[80%] m-3 ml-7 h-[2rem] flex items-center font-light text-[3.5vw] from-inherit border-b-[1px] border-[#2222228e] ">
+                {val.skill}
+               </div>
+            ))}
 
-
-          <div className="w-[90%] mt-1 bg-[#0c0c0c] border-b-[1px] border-[#222222] ">
-            <div className="text-[#ffffff] ml-3 mt-2">Skills</div>
-            <div className="text-[#959595] m-3 font-light text-[3.5vw] from-inherit ">
-              {skill1}
+            {/* <div className="text-[#959595] m-3 font-light text-[3.5vw] from-inherit ">
+             {value.skill1}
             </div>
             <div className="text-[#959595] m-3 font-light text-[3.5vw] from-inherit ">
-              {skill2}
+            {value.skill1}
             </div>
             <div className="text-[#959595] m-3 font-light text-[3.5vw] from-inherit ">
-            {skill3}
-            </div>
+            {value.skill3}
+            </div> */}
           </div>
 
 
@@ -270,8 +281,8 @@ const tournament2=playerinfo.tournament2;
 
 
 
-          <div className="w-[90%] mt-1 bg-[#0c0c0c] border-b-[1px] border-[#222222] ">
-            <div className="text-[#ffffff] ml-3 mt-2">Tournaments</div>
+          <div className="w-[100%] mt-2   bg-gradient-to-r from-[#000000] to-[#0fafb813]  border-[1px]  border-[#262626]    ">
+            <div className="text-[#00fbff] ml-7 mt-1">Tournaments</div>
             <div className="text-[#959595] m-3 font-light text-[3.5vw] from-inherit ">
              {tournament1}
             </div>
@@ -281,7 +292,7 @@ const tournament2=playerinfo.tournament2;
           </div>
 
           {/* <div className="w-[90%] mt-1 bg-[#0c0c0c] border-b-[1px] border-[#222222] ">
-            <div className="text-[#ffffff] ml-3 mt-2">Metrics</div>
+            <div className="text-[#ffffff] ml-5 mt-2">Metrics</div>
             <div className="text-[#959595] m-3 font-thin text-[3vw] from-inherit ">
               <span className="text-[#b4b4b4]  font-normal text-[3.5vw]">
                 {" "}
@@ -308,7 +319,7 @@ const tournament2=playerinfo.tournament2;
 
 
           {/* <div className="w-[90%] mt-1 bg-[#0c0c0c] border-b-[1px] border-[#222222] ">
-            <div className="text-[#ffffff] ml-3 mt-2">Season 17</div>
+            <div className="text-[#ffffff] ml-5 mt-2">Season 17</div>
             <div className="text-[#959595] m-3 font-thin text-[3vw] from-inherit ">
               <span className="text-[#b4b4b4]  font-normal text-[3.5vw]">
                 {" "}
@@ -336,17 +347,17 @@ const tournament2=playerinfo.tournament2;
 
 
           {/* <div className="w-[90%] mt-1 pb-2 bg-[#0c0c0c] border-b-[1px] border-[#222222] ">
-            <div className="text-[#ffffff] ml-3  mt-2">Team</div>
+            <div className="text-[#ffffff] ml-5  mt-2">Team</div>
             <div className="text-[#959595] m-3 mb-3 font-medium text-[3.5vw] from-inherit flex h-[3rem]">
               <img
                 className="w-[15vw] h-[15vw] mb-[2px]  border-[2px] border-[#222222] rounded-[10px]"
                 src={team}
               ></img>
               <div className="h-[3rem]">
-                <div className="text-[#959595] ml-3 mb-2 font-medium text-[3.8vw] from-inherit">
+                <div className="text-[#959595] ml-5 mb-2 font-medium text-[3.8vw] from-inherit">
                   Slayers
                 </div>
-                <div className="text-[#959595] ml-3 font-thin text-[2.5vw] from-inherit">
+                <div className="text-[#959595] ml-5 font-thin text-[2.5vw] from-inherit">
                   March 2023 - Present{" "}
                 </div>
               </div>
@@ -358,10 +369,10 @@ const tournament2=playerinfo.tournament2;
                 src={team2}
               ></img>
               <div className="h-[3rem]">
-                <div className="text-[#959595] ml-3 mb-2 font-medium text-[3.8vw] from-inherit">
+                <div className="text-[#959595] ml-5 mb-2 font-medium text-[3.8vw] from-inherit">
                   Soul
                 </div>
-                <div className="text-[#959595] ml-3 font-thin text-[2.5vw] from-inherit">
+                <div className="text-[#959595] ml-5 font-thin text-[2.5vw] from-inherit">
                   April 2021 - March 2023
                 </div>
               </div>
@@ -380,17 +391,17 @@ const tournament2=playerinfo.tournament2;
   
   
           {/* <div className="w-[90%] mt-1 bg-[#0c0c0c] border-b-[1px] border-[#222222] ">
-            <div className="text-[#ffffff] ml-3 mt-2">Organisation</div>
+            <div className="text-[#ffffff] ml-5 mt-2">Organisation</div>
             <div className="text-[#959595] m-3 mb-7 font-medium text-[3.5vw] from-inherit flex h-[3rem]">
               <img
                 className="w-[15vw] h-[15vw] mb-5 border-[2px] border-[#222222] rounded-[10px]"
                 src={team0}
               ></img>
               <div className="h-[3rem]">
-                <div className="text-[#959595] ml-3 mb-2 font-medium text-[3.8vw] from-inherit">
+                <div className="text-[#959595] ml-5 mb-2 font-medium text-[3.8vw] from-inherit">
                   URExETC
                 </div>
-                <div className="text-[#959595] ml-3 font-thin text-[2.5vw] from-inherit">
+                <div className="text-[#959595] ml-5 font-thin text-[2.5vw] from-inherit">
                   March 2023 - Present{" "}
                 </div>
               </div>
@@ -398,7 +409,7 @@ const tournament2=playerinfo.tournament2;
           </div> */}
 
           {/* <div className="w-[90%] mt-1 bg-[#0c0c0c] border-b-[1px] border-[#222222] ">
-            <div className="text-[#ffffff] ml-3 mt-2 flex">Social Media </div>
+            <div className="text-[#ffffff] ml-5 mt-2 flex">Social Media </div>
             <div className="flex m-5">
               <img className="w-[7vw] h-[7vw] mr-5" src={insta}></img>
               <img className="w-[8vw] h-[7vw]" src={yt}></img>

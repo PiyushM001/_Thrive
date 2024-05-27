@@ -42,7 +42,8 @@ const [ infostate , setinfostate ]=useState(info);
 const userinfo = [];
 const infoplayer=[]
 const infoplayer2=[]
-
+const skillarr=[]
+const [skillsarray,setskillsarray]=useState(skillarr)
 const [users, setusers] = useState(userinfo);
 const [playerinfo , setplayerinfo]=useState(infoplayer)
 const [playerinfo2 , setplayerinfo2]=useState(infoplayer2)
@@ -136,6 +137,7 @@ const getplayerinfo= async (_id)=>{
   });
   const data = await response.json() 
    setplayerinfo(data)
+   setskillsarray(data.skill2)
 }
 
 
@@ -250,7 +252,7 @@ const createinfo= async ( IngameName , RealName , game )=>{
 
 
 
-  const updateinfo = async ( about,contact1,contact2,text,education , skill1, skill2, skill3, playerid, location, tournament1, tournament2, device, infoid) => {
+  const updateinfo = async ( about,contact1,contact2,text,education , addedskill, playerid, location, tournament1, tournament2, device, infoid) => {
     // API Call 
     const response = await fetch(`${port}/updateinfo`, {
       method: 'PUT',
@@ -258,14 +260,13 @@ const createinfo= async ( IngameName , RealName , game )=>{
         'Content-Type': 'application/json',
         "token":localtoken
       },
-      body: JSON.stringify({about,contact1,contact2,text,education , skill1, skill2, skill3, playerid, location, tournament1, tournament2, device, infoid})
+      body: JSON.stringify({about,contact1,contact2,text,education , addedskill, playerid, location, tournament1, tournament2, device, infoid})
     }).then(async (response) => {
       const y = await response.json();
-     
+     getinfo();
       // const st = await response.text();
       if (response.ok) {
         toast.success("info updated");
-        navigate("/profile")
       } else {
         toast.error(response.text());
       }
@@ -529,7 +530,7 @@ const getplayers= async ()=>{
 // getfollowinglist,getfollowerslist
   return (
     
-        <pContext.Provider value={ {getteaminfo,ignoreinvite,teamname,checkfollowstate,post, ownid ,checkfollow,notificationarray,teamarray,getteam,acceptinvite,createteam, getnotification,invite, playerinfo2,infostate, getinfo  , getplayerinfo ,playerinfo,createinfo,users,updateinfo,getplayers,follow ,followbtntext,followingarray,followersarray,followerRealName ,followerIngameName, getfollowinglist,getfollowerslist} }>
+        <pContext.Provider value={ {skillsarray,getteaminfo,ignoreinvite,teamname,checkfollowstate,post, ownid ,checkfollow,notificationarray,teamarray,getteam,acceptinvite,createteam, getnotification,invite, playerinfo2,infostate, getinfo  , getplayerinfo ,playerinfo,createinfo,users,updateinfo,getplayers,follow ,followbtntext,followingarray,followersarray,followerRealName ,followerIngameName, getfollowinglist,getfollowerslist} }>
       {props.children}
     </pContext.Provider>
    

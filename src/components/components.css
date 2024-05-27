@@ -1,0 +1,15 @@
+.mainbg{
+    background-image: url(../Images/bg.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.tbg{
+    background-image: url(../Images/tbg.png);
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.t2bg{
+    background-image: url(../Images/t2bg.png);
+    background-repeat: no-repeat;
+    background-position: center;
+}
