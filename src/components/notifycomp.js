@@ -36,7 +36,7 @@ useEffect(() => {
     };
      
   return (
-    <div className=" bg-[#202020] m-5 rounded-[10px]  flex items-center relative border-[1px] border-[#5b5b5b]  ">
+    <div className=" bg-gradient-to-r from-[#000000] to-[#0fafb813]  m-5 rounded-[10px]  flex items-center relative border-[1px] border-[#5b5b5b]  ">
       <div  className="absolute left-[-1rem] top-[-1rem] w-[5rem] h-[5rem] border-[4vw] rounded-l-[0] rounded-r-[50%] border-[#0e0e0e]  bg-[#0e0e0e] flex items-center "><img className=" rounded-[100%]  " src={profile}></img></div>
     {/* <h1 className="text-[re]" >  {props.id}</h1>
     <h1> {props.RealName}</h1>

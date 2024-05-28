@@ -19,6 +19,9 @@ module.exports = {
     "./src/components/followers.js",
 
     "./src/components/ownprofilepage.js",
+    "./src/components/ownprofilepage2.js",
+    "./src/components/ownprofilepage3.js",
+
     "./src/components/notifycomp.js",
     "./src/components/notification.js",
     "./src/components/Skillform.js",

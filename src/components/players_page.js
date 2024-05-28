@@ -38,10 +38,10 @@ export default function Players() {
     <div className='flex flex-col h-[100vh] w-full'>
       <Header/>
 
-      <div className='flex flex-col flex-wrap items-center overflow-y-scroll  w-full h-[90vh] bg-[#000000] text-[#ffffff]'>
+      <div className='flex flex-col flex-wrap items-center overflow-y-scroll  w-full h-[100vh] bg-[#000000] text-[#ffffff]'>
       {loading && <div className='absolute w-full inset-0 opacity-90 fill-neutral-950 z-[1000]'><div className='h-[30vh] bg-[#000000]'></div><img className='' src={loadinggif}></img><div className='h-[30vh] bg-[#000000]'></div></div>}
 
-<div className='w-[98vw] flex flex-wrap '>
+<div className='w-[98vw] mt-[10vh] mb-[12vh] flex flex-wrap '>
 
 {users.map((value) => (
                       <Player

@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react'
+import './components.css'
+
 import Navbar from 'react-bootstrap/Navbar';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
@@ -22,7 +24,7 @@ export default function Header() {
    },[])
 
   return (
-    <div className='flex w-full h-[10vh] bg-[#000000] justify-evenly items-center '>
+    <div className='flex w-full h-[10vh] absolute top-0 bg-[#000000] justify-evenly items-center headerbg z-[100000]'>
           {loginstate && <Link className='w-[4rem] mr-[-5vw] ml-[-5vw]' to="/profile"><img className=' w-[150%] ' src={profile}></img>
 </Link>}
 

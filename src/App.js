@@ -22,8 +22,6 @@ import Aftersignupform from './components/aftersignupform';
 import Ownprofilepage from './components/ownprofilepage';
 import Loginas from './components/loginas';
 import Teampage from './components/Team_page';
-import Followers from './components/followers';
-import Following from './components/following';
 import Skillsform from './components/forms/skillsform';
 import Ownprofilepage3 from './components/ownprofilepage3';
 import Ownprofilepage2 from './components/ownprofilepage2';
@@ -61,8 +59,6 @@ function App() {
 
         <Route path="/signup" element={ <Signup/> } />
         <Route path="/aftersignupform" element={ <Aftersignupform/> } />
-        <Route path="/followers/:_id" element={ <Followers/> } />
-        <Route path="/following/:_id" element={ <Following/> } />
         <Route path="/skillsform" element={ <Skillsform/> } />
         <Route path="/notification" element={ <Notificationpage/> } />
         {/* <Route path="/post" element={ <Postpage/> } /> */}

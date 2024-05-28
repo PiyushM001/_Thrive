@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Transition } from "@headlessui/react";
-
+import './components.css'
 import Dialog from "@material-ui/core/Dialog";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
@@ -18,6 +18,8 @@ import cross from "../Images/cross.svg";
 
 import posticon from "../Images/posticon.svg";
 import plusicon from "../Images/plusicon2.png";
+import reject from "../Images/reject.svg"
+import Followcomp from './followcomp';
 
 import circle from "../Images/circle.png";
 import team0 from "../Images/org.png";
@@ -36,9 +38,10 @@ export default function Ownprofilepage() {
   let navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const a = useContext(pContext);
+
   const infoid = localStorage.getItem("infoid");
 
-  const { info, ownid, getinfo, addinfo, infostate, updateinfo } = a;
+  const { info, ownid, getinfo, addinfo, infostate, updateinfo,getfollowerslist,followersarray,followingarray, getfollowinglist } = a;
   const _id = ownid;
   useEffect(() => {
     getinfo();
@@ -48,14 +51,46 @@ export default function Ownprofilepage() {
     navigate("/");
     localStorage.setItem("token", "");
   };
-
   const [addedskill, setaddedskill] = useState(" ");
+  const [ about,setabout] = useState(" ");
+  const [ device,setDevice] = useState(" ");
+  const [ playerid,setPlayerid] = useState(" ");
+  const [ addedtournament,setAddedTournament] = useState(" ");
 
   const [open, setOpen] = useState(false);
+  const [openAbout, setOpenAbout] = useState(false);
+  const [openDevice, setOpenDevice] = useState(false);
+  const [openPlayerid, setOpenPlayerid] = useState(false);
+  const [openTournament, setOpenTournament] = useState(false);
+
+
+  const [openFollowers, setOpenFollowers] = useState(false);
+  const [openAllies, setOpenAllies] = useState(false);
+  ;const handleClickToOpenFollowers = () => {
+    setOpenFollowers(true);
+    getfollowerslist(infoid);
+
+  };const handleClickToOpenAllies = () => {
+    setOpenAllies(true);
+    getfollowinglist(infoid);
+  };
+
+
 
   const handleClickToOpen = () => {
     setOpen(true);
   };
+  const handleClickToOpenAbout = () => {
+    setOpenAbout(true);
+  };const handleClickToOpenDevice = () => {
+    setOpenDevice(true);
+  };const handleClickToOpenPlayerid = () => {
+    setOpenPlayerid(true);
+
+  };const handleClickToOpenTournament = () => {
+    setOpenTournament(true);
+
+  }
 
   const handleSubmitskills = () => {
     updateinfo(
@@ -69,13 +104,84 @@ export default function Ownprofilepage() {
       " ",
       " ",
       " ",
-      " ",
       infoid
     );
     setOpen(false);
   };
+
+  const handleSubmitAbout = () => {
+    updateinfo(
+      about,
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      infoid
+    );
+    setOpenAbout(false);
+  };
+  const handleSubmitDevice = () => {
+    updateinfo(
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      device,
+      infoid
+    );
+    setOpenDevice(false);
+  };
+  const handleSubmitPlayerid = () => {
+    updateinfo(
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      playerid,
+      " ",
+      " ",
+      " ",
+      infoid
+    );
+    setOpenPlayerid(false);
+  };
+  const handleSubmitTournament = () => {
+    updateinfo(
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      addedtournament,
+      " ",
+      infoid
+    );
+    setOpenTournament(false);
+  };
   const handleClose = () => {
     setOpen(false);
+    setOpenAbout(false);
+    setOpenPlayerid(false);
+    setOpenDevice(false);
+    setOpenTournament(false)
+    setOpenFollowers(false)
+    setOpenAllies(false);
+
   };
 
   // const handlec=()=>{
@@ -84,7 +190,7 @@ export default function Ownprofilepage() {
   return (
     <>
       {infostate.map((value) => (
-        <div className="bg-gradient-to-r from-[#000000] to-[#111111] w-full h-[90vh] overflow-y-scroll">
+        <div className="bg-gradient-to-r from-[#000000] to-[#000000] w-full h-[100vh] overflow-y-scroll">
           <ToastContainer />
           <Transition
             show={isOpen}
@@ -140,9 +246,9 @@ export default function Ownprofilepage() {
               </div>
               <div className="w-[40%]"></div>
               <div className="flex w-[60%] justify-end ">
-                <Link className="m-2" to="/ProfileForm">
+                {/* <Link className="m-2" to="/ProfileForm">
                   <img src={editicon}></img>
-                </Link>
+                </Link> */}
 
                 <Link
                   className="  flex justify-center items-center "
@@ -150,7 +256,7 @@ export default function Ownprofilepage() {
                 >
                   <img className="w-[1.2rem]" src={posticon}></img>
                 </Link>
-                <div className=" mr-[0.6rem] ml-[0.6rem] flex justify-center items-center ">
+                <div className=" mr-[1rem] ml-[1rem] flex justify-center items-center ">
                   <img
                     onClick={() => setIsOpen(!isOpen)}
                     className="w-[1.2rem]"
@@ -180,31 +286,130 @@ export default function Ownprofilepage() {
               </div>
             </div>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             <div className="flex  h-[5rem] justify-evenly items-center ">
               <div className="flex w-[94%] h-[4rem] justify-evenly items-center">
-                <Link
-                  to={`/followers/${_id}`}
-                  className=" border-[1px] border-[#353535]  w-[30%] h-[3rem] flex flex-col justify-center items-center text-[#a7a7a7] rounded-[10px] text-[3.5vw]"
+
+
+                <div
+                 onClick={handleClickToOpenFollowers}
+                  className=" border-[1px] font-teachers border-[#00fbff23] bg-[#00fbff09]  w-[30%] h-[3rem] flex flex-col justify-center items-center text-[#a7a7a7] rounded-[10px] text-[3.5vw]"
                 >
                   <div>Followers</div>
                   <div>{value.followersCount}</div>
-                </Link>
+                </div>
 
-                <Link
-                  to={`/following/${_id}`}
-                  className=" border-[1px] border-[#353535]  w-[30%] h-[3rem] flex flex-col justify-center items-center text-[#a7a7a7] rounded-[10px] text-[3.5vw]"
+
+
+                <div
+                 onClick={handleClickToOpenAllies}
+
+                  className=" border-[1px] font-teachers border-[#00fbff23] bg-[#00fbff09]  w-[30%] h-[3rem] flex flex-col justify-center items-center text-[#a7a7a7] rounded-[10px] text-[3.5vw]"
                 >
                   <div>Allies</div>
                   <div>{value.followingCount}</div>
-                </Link>
+                </div>
 
-                <div className=" border-[1px] border-[#353535]  w-[30%] h-[3rem] flex flex-col justify-center items-center text-[#a7a7a7] rounded-[10px] text-[3.5vw]">
+                <div className=" border-[1px] font-teachers border-[#00fbff20] bg-[#00fbff09]  w-[30%] h-[3rem] flex flex-col justify-center items-center text-[#a7a7a7] rounded-[10px] text-[3.5vw]">
                   <div>Tournaments</div>
                   <div>0</div>
                 </div>
               </div>
             </div>
           </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
           <div className="bg-gradient-to-r from-[#0a0a0a] to-[#0fafb813] h-[3rem] flex  items-center justify-center ">
             <div className="bg-[#09090900] w-[90%] h-[2.8rem] flex justify-evenly">
@@ -213,7 +418,7 @@ export default function Ownprofilepage() {
                 to="/profile"
               >
                 {" "}
-                <div className=" w-full flex justify-center text-[#B4FF16] text-[3.5vw]">
+                <div className=" w-full flex justify-center font-mochiy-pop text-[#B4FF16] text-[3.5vw]">
                   {value.game}
                 </div>
               </Link>
@@ -230,7 +435,7 @@ export default function Ownprofilepage() {
                 to="/profile/posts"
               >
                 {" "}
-                <div className="border-[#222222] w-full flex justify-center text-[#656565]  text-[3.5vw]">
+                <div className="border-[#222222] w-full flex  justify-center text-[#656565]  text-[3.5vw]">
                   Posts
                 </div>
               </Link>
@@ -264,7 +469,7 @@ export default function Ownprofilepage() {
             >
 
               <div className="flex h-[4rem]">
-                <div className="text-[#00fbff] text-[1rem] ml-7 mt-2 w-[20%] flex items-center">
+                <div className="text-[#00fbff] font-teachers  text-[1.1rem] ml-7 mt-2 w-[20%] flex items-center">
                   About
                 </div>
 
@@ -274,26 +479,26 @@ export default function Ownprofilepage() {
                       className="w-[3rem] mr-4"
                       variant="outlined"
                       color="primary"
-                      onClick={handleClickToOpen}
+                      onClick={handleClickToOpenAbout}
                     >
                       +
                     </Button>
-                    <Dialog open={open} onClose={handleClose}>
+                    <Dialog open={openAbout} onClose={handleClose}>
                       <DialogTitle className=" font-mochiy-pop text-[2vw]">
-                        {"Add your Skill"}
+                        {" Write About yourself"}
                       </DialogTitle>
                       <DialogContent>
                         <DialogContentText>
-                          Example: Assaulter,Team work,IGL etc...
+                         Make your profile attractive
                         </DialogContentText>
                         <TextField
                           autoFocus
                           required
                           type="text"
-                          name="addedskill"
-                          id="addedskill"
-                          value={addedskill}
-                          onChange={(e) => setaddedskill(e.target.value)}
+                          name="about"
+                          id="about"
+                          value={about}
+                          onChange={(e) => setabout(e.target.value)}
                           margin="dense"
                           label=""
                           fullWidth
@@ -303,7 +508,7 @@ export default function Ownprofilepage() {
                       <DialogActions className="bg-[#aeff00]">
                         <Button
                           className="w-[100%] "
-                          onClick={handleSubmitskills}
+                          onClick={handleSubmitAbout}
                           color="red"
                           autoFocus
                         >
@@ -313,10 +518,13 @@ export default function Ownprofilepage() {
                     </Dialog>
                   </div>
                 </div>
-              </div>
 
-              <div className="text-[#959595] ml-3 ml-7  font-thin text-[3vw] from-inherit ">
-                {value.text}
+
+
+
+              </div>
+             <div className="text-[#959595] ml-7 mb-3 mr-4  font-thin text-[4vw] font-teachers from-inherit ">
+                {value.about}
               </div>
             </div>
 
@@ -335,7 +543,7 @@ export default function Ownprofilepage() {
 
             <div className="w-[100%]  bg-gradient-to-r from-[#000000] to-[#0fafb813] mt-1  border-[1px]  border-[#262626] ">
               <div className="flex h-[4rem]">
-                <div className="w-[20%] text-[#00fbff] text-[1rem] ml-7 mt-2 flex  items-center">
+                <div className="w-[20%]  font-teachers text-[#00fbff] text-[1.1rem] ml-7 mt-2 flex  items-center">
                   Device
                 </div>
                 <div className="w-[80%] flex justify-end mr-4">
@@ -344,26 +552,26 @@ export default function Ownprofilepage() {
                       className="w-[3rem] mr-4"
                       variant="outlined"
                       color="primary"
-                      onClick={handleClickToOpen}
+                      onClick={handleClickToOpenDevice}
                     >
                       +
                     </Button>
-                    <Dialog open={open} onClose={handleClose}>
+                    <Dialog open={openDevice} onClose={handleClose}>
                       <DialogTitle className=" font-mochiy-pop text-[2vw]">
-                        {"Add your Skill"}
+                        {"Add your Device"}
                       </DialogTitle>
                       <DialogContent>
                         <DialogContentText>
-                          Example: Assaulter,Team work,IGL etc...
+                          Example:Iqoo Neo 6 (90 FPS)
                         </DialogContentText>
                         <TextField
                           autoFocus
                           required
                           type="text"
-                          name="addedskill"
-                          id="addedskill"
-                          value={addedskill}
-                          onChange={(e) => setaddedskill(e.target.value)}
+                          name="device"
+                          id="device"
+                          value={device}
+                          onChange={(e) => setDevice(e.target.value)}
                           margin="dense"
                           label=""
                           fullWidth
@@ -373,7 +581,7 @@ export default function Ownprofilepage() {
                       <DialogActions className="bg-[#aeff00]">
                         <Button
                           className="w-[100%] bg-[#91ff00]"
-                          onClick={handleSubmitskills}
+                          onClick={handleSubmitDevice}
                           color="red"
                           autoFocus
                         >
@@ -385,7 +593,7 @@ export default function Ownprofilepage() {
                 </div>
               </div>
 
-              <div className="text-[#959595] m-3 ml-7 font-light text-[3.5vw] from-inherit ">
+              <div className="text-[#959595] font-teachers m-3 ml-7 font-light text-[3.5vw] from-inherit ">
                 {value.device}
               </div>
             </div>
@@ -408,35 +616,34 @@ export default function Ownprofilepage() {
 
             <div className="w-[100%]  bg-gradient-to-r from-[#000000] to-[#0fafb813] mt-1  border-[1px]  border-[#262626] ">
               <div className="flex h-[4rem]">
-                <div className="w-[20%] text-[#00fbff] text-[1rem] ml-7 mt-2 flex items-center">
+                <div className="w-[40%] font-teachers text-[#00fbff] text-[1rem] ml-7 mt-2 flex items-center">
                   Player-Id
                 </div>
-                <div className="w-[80%] flex justify-end mr-4">
+                <div className="w-[60%] flex justify-end mr-4">
                   <div className=" flex items-center">
                     <Button
                       className="w-[2rem] text-[red]"
                       variant="outlined"
                       color="primary"
-                      onClick={handleClickToOpen}
+                      onClick={handleClickToOpenPlayerid}
                     >
                       +
                     </Button>
-                    <Dialog open={open} onClose={handleClose}>
+                    <Dialog open={openPlayerid} onClose={handleClose}>
                       <DialogTitle className=" font-mochiy-pop text-[2vw]">
-                        {"Add your Skill"}
+                        {"Add your ID in game "}
                       </DialogTitle>
                       <DialogContent>
                         <DialogContentText>
-                          Example: Assaulter,Team work,IGL etc...
                         </DialogContentText>
                         <TextField
                           autoFocus
                           required
                           type="text"
-                          name="addedskill"
-                          id="addedskill"
-                          value={addedskill}
-                          onChange={(e) => setaddedskill(e.target.value)}
+                          name="playerid"
+                          id="playerid"
+                          value={playerid}
+                          onChange={(e) => setPlayerid(e.target.value)}
                           margin="dense"
                           label=""
                           fullWidth
@@ -446,7 +653,7 @@ export default function Ownprofilepage() {
                       <DialogActions className="bg-[#aeff00]">
                         <Button
                           className="w-[100%] bg-[#91ff00]"
-                          onClick={handleSubmitskills}
+                          onClick={handleSubmitPlayerid}
                           color="red"
                           autoFocus
                         >
@@ -458,7 +665,7 @@ export default function Ownprofilepage() {
                 </div>
               </div>
 
-              <div className="text-[#959595] m-3 ml-7 font-light text-[3.5vw] from-inherit ">
+              <div className="text-[#959595] font-teachers m-3 ml-7 font-light text-[3.5vw] from-inherit ">
                 {value.playerid}
               </div>
             </div>
@@ -525,7 +732,7 @@ export default function Ownprofilepage() {
 
             <div className="w-[100%]  bg-gradient-to-r from-[#000000] to-[#0fafb813] mt-1  border-[1px]  border-[#262626] ">
               <div className="w-full flex  h-[4rem]">
-                <div className="text-[#00fbff] text-[1rem] ml-7  w-[80%] flex items-center">
+                <div className="text-[#00fbff] font-teachers text-[1rem] ml-7  w-[80%] flex items-center">
                   Skills
                 </div>
 
@@ -609,7 +816,7 @@ export default function Ownprofilepage() {
 
 
 
-            <div className="w-[100%]  bg-gradient-to-r from-[#000000] to-[#0fafb813] mt-1  border-[1px]  border-[#262626] ">
+            <div className="w-[100%]  bg-gradient-to-r from-[#000000] to-[#0fafb813] mt-1 mb-[11vh] border-[1px]  border-[#262626] ">
               <div className="w-full flex h-[4rem]">
                 <div className="text-[#00fbff] text-[1rem] ml-7  w-[80%] flex items-center">
                   Tournaments
@@ -619,26 +826,26 @@ export default function Ownprofilepage() {
                   <Button
                     variant="outlined"
                     color="primary"
-                    onClick={handleClickToOpen}
+                    onClick={handleClickToOpenTournament}
                   >
                     +
                   </Button>
-                  <Dialog open={open} onClose={handleClose}>
+                  <Dialog open={openTournament} onClose={handleClose}>
                     <DialogTitle >
-                      {"Add your Skill"}
+                      {"Add Tournaments in which you have participated"}
                     </DialogTitle>
                     <DialogContent>
                       <DialogContentText>
-                        Example: Assaulter,Team work,IGL etc...
+                        Example: BGIS 2023 (Runner up)
                       </DialogContentText>
                       <TextField
                         autoFocus
                         required
                         type="text"
-                        name="addedskill"
-                        id="addedskill"
-                        value={addedskill}
-                        onChange={(e) => setaddedskill(e.target.value)}
+                        name="addedTournament"
+                        id="addedTournament"
+                        value={addedtournament}
+                        onChange={(e) => setAddedTournament(e.target.value)}
                         margin="dense"
                         label=""
                         fullWidth
@@ -648,7 +855,7 @@ export default function Ownprofilepage() {
                     <DialogActions className="bg-[#aeff00]">
                       <Button
                         className="w-[100%] "
-                        onClick={handleSubmitskills}
+                        onClick={handleSubmitTournament}
                         
                         autoFocus
                       >
@@ -658,32 +865,88 @@ export default function Ownprofilepage() {
                   </Dialog>
                 </div>
               </div>
-              {value.skill2.map((val) => (
+              {value.tournament2.map((val) => (
                 <div className="text-[#c4c4c4] font-teachers w-[80%] m-3 ml-7 h-[2rem] flex items-center font-light text-[14px] from-inherit border-b-[1px] border-[#2222228e]">
-                  {val.skill}
+                  {val.tournament}
                 </div>
               ))}
-              {/* <div className="text-[#959595] m-3 font-light text-[3.5vw] from-inherit ">
-             {value.skill1}
-            </div>
-            <div className="text-[#959595] m-3 font-light text-[3.5vw] from-inherit ">
-            {value.skill1}
-            </div>
-            <div className="text-[#959595] m-3 font-light text-[3.5vw] from-inherit ">
-            {value.skill3}
-            </div> */}
+              
             </div>
 
-            {/* <div className="w-[90%] mt-1 bg-[#0c0c0c] border-b-[1px] border-[#222222] ">
-            <div className="text-[#ffffff] ml-3 mt-2">Tournaments</div>
-            <div className="text-[#959595] m-3 font-light text-[3.5vw] from-inherit ">
-{value.tournament1}
-            </div>
-            <div className="text-[#959595] m-3 font-light text-[3.5vw] from-inherit ">
-            {value.tournament2}
-            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
             
-          </div> */}
+                 
+                    <Dialog open={openFollowers} onClose={handleClose} >
+                      <DialogTitle className="  w-[80vw] bg-[#020909] border-[#23757560] text-[#ebebeb] border-t-[1px]  border-l-[1px] border-r-[1px] ">
+                        <div className="flex">
+                          <div className="w-[90%]">Followers</div>
+                          <img onClick={handleClose} className="w-[10%]" src={reject}></img>
+                        </div>
+                      </DialogTitle>
+
+
+                      <DialogContent className=" bg-[#020909] border-[#23757560]  border-b-[1px]  border-l-[1px] border-r-[1px] w-[80vw] h-[60vh]  ">
+                 
+                        <div className="w-full ">
+{followersarray.map((value)=>(
+                <Followcomp key={value.id} RealName={value.followerRealName} IngameName={value.followerIngameName} />
+                ))}
+</div>
+
+
+                      </DialogContent>
+                    </Dialog>
+                
+
+
+
+
+
+
+                    <Dialog open={openAllies} onClose={handleClose} >
+                      <DialogTitle className="  w-[80vw] bg-[#020909] border-[#23757560] text-[#ebebeb] border-t-[1px]  border-l-[1px] border-r-[1px] ">
+                        <div className="flex">
+                          <div className="w-[90%]">Allies</div>
+                          <img onClick={handleClose} className="w-[10%]" src={reject}></img>
+                        </div>
+                      </DialogTitle>
+
+
+                      <DialogContent className=" bg-[#020909] border-[#23757560]  border-b-[1px]  border-l-[1px] border-r-[1px] w-[80vw] h-[60vh]  ">
+                 
+                        <div className="w-full ">
+{followingarray.map((value)=>(
+                <Followcomp key={value.id} RealName={value.RealName} IngameName={value.IngameName} />
+                ))}
+</div>
+
+
+                      </DialogContent>
+                    </Dialog>
+                
+
+
+
+
+
+
+
+
+
+
+
 
             {/* <div className="w-[90%] mt-1 bg-[#0c0c0c] border-b-[1px] border-[#222222] ">
             <div className="text-[#ffffff] ml-3 mt-2">Metrics</div>
@@ -765,7 +1028,9 @@ export default function Ownprofilepage() {
           </div>
         </div>
       ))}
+      <div className="bg-[#ff000000]">
       <Footer />
+      </div>
     </>
   );
 }

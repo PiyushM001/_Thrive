@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import './components.css'
 import img from '../Images/Frame 121075512.svg'
 import img0 from '../Images/hl.svg'
 import img2 from '../Images/Frame 121075517.svg'
@@ -20,7 +21,7 @@ export default function Footer() {
   let path = location.pathname;
   
   return (
-    <div className='flex w-full h-[10vh] bg-[#0e0e0e] justify-evenly '>
+    <div className='flex w-full h-[10vh] absolute bottom-0 bg-[#0e0e0e00] justify-evenly footerbg  z-[10000]'>
     
       <Link className='flex items-center ' to="/"><img className='w-[18vw] h-[4rem] ' src={path==="/"?img0:img}></img></Link>
       <Link className='flex items-center' to="/players"><img className='w-[18vw] h-[4rem]' src={path==="/players"?img40:img4}></img></Link>
@@ -29,5 +30,6 @@ export default function Footer() {
       <Link className='flex items-center' to="/tournaments"><img className='w-[18vw] h-[4rem]' src={path==="/tournaments"?img30:img3}></img></Link>
       <Link className='flex items-center' to="/team"><img className='w-[18vw] h-[4rem] ' src={path==="/team"?img50:img5}></img></Link>
     </div>
+    
   )
 }

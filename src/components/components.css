@@ -1,8 +1,31 @@
-.mainbg{
-    background-image: url(../Images/bg.jpg);
-    background-repeat: no-repeat;
-    background-position: center;
+.footerbg{
+  /* From https://css.glass */
+background: rgba(1, 15, 17, 0.908);
+border-top-left-radius: 16px;
+border-top-right-radius: 16px;
+
+backdrop-filter: blur(20px);
+-webkit-backdrop-filter: blur(5px);
+border-top: 1px solid rgba(255, 255, 255, 0.3);
 }
+.headerbg{
+    /* From https://css.glass */
+    background: rgba(1, 15, 17, 0.908);
+ 
+  
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(5px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  }
+  .tournamentbg{
+    /* From https://css.glass */
+    background: rgba(1, 15, 17, 0.908);
+ 
+  
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(5px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  }
 .tbg{
     background-image: url(../Images/tbg.png);
     background-repeat: no-repeat;
