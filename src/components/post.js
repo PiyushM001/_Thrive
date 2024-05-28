@@ -13,7 +13,7 @@ export default function Post(props) {
 
 
         <div className='flex'>
-            <img className='w-[3rem]' src={profile}></img>
+            <img className='w-[3rem]' src={profile}  alt="img" ></img>
             <div className='flex flex-col justify-center '>
                 <div className='text-[#ffffff] font-mochiy-pop text-[2.8vw] font-thin '>{props.name}</div>
                 <div className='font-medium text-[2vw] h-[30%] flex items-center text-[#656565]'>{props.realname}</div>
@@ -29,7 +29,7 @@ export default function Post(props) {
        
        
 
-<img className='w-full' src={props.postimg}></img>
+<img className='w-full' src={props.postimg}  alt="img" ></img>
 
 
 
@@ -38,7 +38,7 @@ export default function Post(props) {
 <div className='w-[100%] h-[2.5rem]  flex items-center'>
 
     <div className='w-[30%] flex justify-evenly'>
-    <div className='text-[2.5vw]'>    <img  src={likeicon}></img> Like</div>
+    <div className='text-[2.5vw]'>    <img  src={likeicon}  alt="img" ></img> Like</div>
     <div className='text-[2.5vw] flex  flex-col justify-center items-center'>    <img className='w-[0.8rem]' src={commenticon}></img>Comment  </div>
     </div>
 

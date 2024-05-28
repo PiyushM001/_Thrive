@@ -14,23 +14,15 @@ import Followcomp from './followcomp';
 import Footer from "./footer";
 import profilebg from "../Images/profile_bg.png";
 import profilep from "../Images/profilep.png";
-import editicon from "../Images/edit-icon.svg";
 import settings from "../Images/Settings.svg";
 import cross from "../Images/cross.svg";
 
 import posticon from "../Images/posticon.svg";
-import plusicon from "../Images/plusicon2.png";
 
-import circle from "../Images/circle.png";
-import team0 from "../Images/org.png";
 import { pContext } from "../context/profilecontext";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
-import team from "../Images/org2.png";
-import team2 from "../Images/org3.png";
-import yt from "../Images/yt3.png";
-import insta from "../Images/insta3.png";
 import { Link, useParams } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 
@@ -45,7 +37,7 @@ export default function Ownprofilepage() {
   const _id = ownid;
   useEffect(() => {
     getinfo();
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const logoutfun = () => {
     navigate("/");
@@ -218,6 +210,7 @@ export default function Ownprofilepage() {
                   onClick={() => setIsOpen(!isOpen)}
                   className="w-[1.7rem] m-3"
                   src={cross}
+                  alt="img"
                 ></img>
               </div>
               <div className="w-[100%] mt-1 bg-[#0c0c0c] border-b-[1px] border-[#222222] ">
@@ -234,12 +227,12 @@ export default function Ownprofilepage() {
           </Transition>
           <div>
             <div>
-              <img className="w-[100vw] h-[6rem]" src={profilebg}></img>
+              <img className="w-[100vw] h-[6rem]" src={profilebg} alt="img"></img>
             </div>
 
             <div className="flex h-[4rem] relative items-center">
               <div className="absolute left-0 bottom-0">
-                <img className="w-[35vw]" src={profilep}></img>
+                <img className="w-[35vw]" src={profilep} alt="img"></img>
               </div>
               <div className="w-[40%]"></div>
               <div className="flex w-[60%] justify-end ">
@@ -249,13 +242,14 @@ export default function Ownprofilepage() {
                   className="  flex justify-center items-center "
                   to="/post"
                 >
-                  <img className="w-[1.2rem]" src={posticon}></img>
+                  <img className="w-[1.2rem]" src={posticon} alt="img"></img>
                 </Link>
                 <div className=" mr-[1rem] ml-[1rem] flex justify-center items-center ">
                   <img
                     onClick={() => setIsOpen(!isOpen)}
                     className="w-[1.2rem]"
                     src={settings}
+                    alt="img"
                   ></img>
                 </div>
 
@@ -753,7 +747,7 @@ export default function Ownprofilepage() {
                       <DialogTitle className="  w-[80vw] bg-[#020909] border-[#23757560] text-[#ebebeb] border-t-[1px]  border-l-[1px] border-r-[1px] ">
                         <div className="flex">
                           <div className="w-[90%]">Followers</div>
-                          <img onClick={handleClose} className="w-[10%]" src={reject}></img>
+                          <img onClick={handleClose} className="w-[10%]" src={reject} alt="img"></img>
                         </div>
                       </DialogTitle>
 
@@ -780,7 +774,7 @@ export default function Ownprofilepage() {
                       <DialogTitle className="  w-[80vw] bg-[#020909] border-[#23757560] text-[#ebebeb] border-t-[1px]  border-l-[1px] border-r-[1px] ">
                         <div className="flex">
                           <div className="w-[90%]">Allies</div>
-                          <img onClick={handleClose} className="w-[10%]" src={reject}></img>
+                          <img onClick={handleClose} className="w-[10%]" src={reject} alt="img"></img>
                         </div>
                       </DialogTitle>
 

@@ -44,7 +44,7 @@ export default function Header() {
       </Form>
      <Link to="/notification" ><img className='w-[5vw]' src={bell}></img></Link> 
 
-      <img  className='w-[7vw]' src={chat}></img>
+      <img  className='w-[7vw]' src={chat} alt="img" ></img>
 
     </div>
   )

@@ -6,21 +6,14 @@ import nopost from '../Images/nopost.png'
 
 import './components.css'
 import Dialog from "@material-ui/core/Dialog";
-import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
-import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 
 import Footer from "./footer";
 import profilebg from "../Images/profile_bg.png";
 import profilep from "../Images/profilep.png";
-import team0 from "../Images/org.png";
 import { pContext } from "../context/profilecontext";
 import { useContext } from "react";
-import team from "../Images/org2.png";
-import team2 from "../Images/org3.png";
-import yt from "../Images/yt3.png";
-import insta from "../Images/insta3.png";
 import { Link, useParams } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 
@@ -31,16 +24,14 @@ export default function Profilepagegames() {
   const { _id } = useParams();
   const a = useContext(pContext);
 
-  const {invite,tournamentarray, skillsarray, checkfollow, checkfollowstate,teamname, getteaminfo,infostate, playerinfo, getplayerinfo, follow, followbtntext,getinfo,followerIngameName,followerRealName,getfollowerslist,followersarray, getfollowinglist,followingarray  } = a;
+  const {invite, checkfollow, checkfollowstate,teamname, getteaminfo, playerinfo, getplayerinfo, follow, getinfo,followerIngameName,followerRealName,getfollowerslist,followersarray, getfollowinglist,followingarray  } = a;
 
   useEffect(() => {
-    // console.log("chal rha")
     getplayerinfo(_id);
     checkfollow(_id);
-    
     getinfo()
    getteaminfo()
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const RealName = playerinfo.RealName;
   // console.log("infostate",infostate)
@@ -59,20 +50,13 @@ export default function Profilepagegames() {
   // about,contact,contact2,text,education , skill1, skill2, skill3, playerid, location, tournament1, tournament2,  infoid
   
   const game = playerinfo.game;
-  const key = playerinfo.key;
   const followersCount = playerinfo.followersCount;
   const followingCount = playerinfo.followingCount;
-  const tournaments = 0;
-  const device = playerinfo.device;
-  const about = playerinfo.about;
   
 
-  const playerid = playerinfo.playerid;
 
 
 
-const tournament1=playerinfo.tournament1;
-const tournament2=playerinfo.tournament2;
 
 
 const [openFollowers, setOpenFollowers] = useState(false);
@@ -104,13 +88,13 @@ const handleClose = () => {
 
         <div>
           <div>
-            <img className="w-[100vw] h-[6rem]" src={profilebg}></img>
+            <img className="w-[100vw] h-[6rem]" src={profilebg}  alt="img" ></img>
           </div>
 
 
           <div className="flex h-[4rem] relative items-center">
             <div className="absolute left-0 bottom-0">
-              <img className="w-[35vw]" src={profilep}></img>
+              <img className="w-[35vw]" src={profilep} alt="img" ></img>
             </div>
             <div className="w-[35%]"></div>
             <div className="flex w-[60%] justify-start ">
@@ -214,7 +198,7 @@ const handleClose = () => {
           
         <div className="h-[10rem] flex justify-center items-center">
 <div className=" flex-col items-center h-[5rem]">
-<img className="w-[4rem]" src={nopost}></img>
+<img className="w-[4rem]" src={nopost} alt="img" ></img>
 <div className="text-[1rem] text-[#7a7a7a]">No posts</div>
 </div>
 </div>
@@ -231,7 +215,7 @@ const handleClose = () => {
                       <DialogTitle className="  w-[80vw] bg-[#020909] border-[#23757560] text-[#ebebeb] border-t-[1px]  border-l-[1px] border-r-[1px] ">
                         <div className="flex">
                           <div className="w-[90%]">Followers</div>
-                          <img onClick={handleClose} className="w-[10%]" src={reject}></img>
+                          <img onClick={handleClose} className="w-[10%]" src={reject} alt="img" ></img>
                         </div>
                       </DialogTitle>
 
@@ -258,7 +242,7 @@ const handleClose = () => {
                       <DialogTitle className="  w-[80vw] bg-[#020909] border-[#23757560] text-[#ebebeb] border-t-[1px]  border-l-[1px] border-r-[1px] ">
                         <div className="flex">
                           <div className="w-[90%]">Allies</div>
-                          <img onClick={handleClose} className="w-[10%]" src={reject}></img>
+                          <img onClick={handleClose} className="w-[10%]" src={reject} alt="img" ></img>
                         </div>
                       </DialogTitle>
 

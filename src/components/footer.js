@@ -23,12 +23,12 @@ export default function Footer() {
   return (
     <div className='flex w-full h-[10vh] absolute bottom-0 bg-[#0e0e0e00] justify-evenly footerbg  z-[10000]'>
     
-      <Link className='flex items-center ' to="/"><img className='w-[18vw] h-[4rem] ' src={path==="/"?img0:img}></img></Link>
-      <Link className='flex items-center' to="/players"><img className='w-[18vw] h-[4rem]' src={path==="/players"?img40:img4}></img></Link>
+      <Link className='flex items-center ' to="/"><img className='w-[18vw] h-[4rem] ' src={path==="/"?img0:img} alt="img"></img></Link>
+      <Link className='flex items-center' to="/players"><img className='w-[18vw] h-[4rem]' src={path==="/players"?img40:img4} alt="img"></img></Link>
       {/* <Link className='flex items-center' to="/post"><img className='w-[18vw]' src={path==="/post"?img20:img2}></img></Link> */}
 
-      <Link className='flex items-center' to="/tournaments"><img className='w-[18vw] h-[4rem]' src={path==="/tournaments"?img30:img3}></img></Link>
-      <Link className='flex items-center' to="/team"><img className='w-[18vw] h-[4rem] ' src={path==="/team"?img50:img5}></img></Link>
+      <Link className='flex items-center' to="/tournaments"><img className='w-[18vw] h-[4rem]' src={path==="/tournaments"?img30:img3} alt="img"></img></Link>
+      <Link className='flex items-center' to="/team"><img className='w-[18vw] h-[4rem] ' src={path==="/team"?img50:img5} alt="img"></img></Link>
     </div>
     
   )
