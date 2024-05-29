@@ -1,8 +1,10 @@
 import React from "react";
+import './components.css'
+
 import profile from "../Images/profileimg.png";
 export default function Followcomp(props) {
   return (
-    <div className=" border-[1px] border-[#00fbff23] bg-[#0fafb813] rounded-[10px] h-[5rem]  flex items-center relative mt-2   ">
+    <div className=" border-[1px] border-[#00fbff23] bg-[#0fafb813] rounded-[10px] h-[5rem]  flex items-center relative mt-3 glass3  ">
       <div className=" w-[4rem] h-[4rem]  flex items-center ">
         <img className=" rounded-[10px]  border-[1px] border-[#0fb0b8b1] ml-2 " src={profile}></img>
       </div>

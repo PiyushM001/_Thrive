@@ -131,17 +131,17 @@ const handleClose = () => {
 
           <div className="flex h-[5rem] justify-evenly items-center">
             <div className="flex w-[94%] h-[4rem] justify-evenly items-center">
-              <div  onClick={handleClickToOpenFollowers} className=" border-[1px] border-[#00fbff23] bg-[#00fbff09] w-[30%] h-[3rem] flex flex-col justify-center items-center text-[#a7a7a7] rounded-[10px] text-[3.5vw]">
+              <div  onClick={handleClickToOpenFollowers} className=" border-[1px] border-[#00fbff23] bg-[#00fbff09] w-[30%] h-[3rem] flex flex-col justify-center items-center text-[#a7a7a7] rounded-[10px] text-[3.5vw] glass3 ">
                 <div>Followers</div>
                 <div>{followersCount}</div>
               </div>
 
-              <div onClick={handleClickToOpenAllies}  className="  border-[1px] border-[#00fbff23] bg-[#00fbff09] w-[30%] h-[3rem] flex flex-col justify-center items-center text-[#a7a7a7] rounded-[10px] text-[3.5vw]">
+              <div onClick={handleClickToOpenAllies}  className="  border-[1px] border-[#00fbff23] bg-[#00fbff09] w-[30%] h-[3rem] flex flex-col justify-center items-center text-[#a7a7a7] rounded-[10px] text-[3.5vw] glass3 ">
                 <div>Allies</div>
                 <div>{followingCount}</div>
               </div>
 
-              <div className=" w-[30%] h-[3rem] border-[1px] border-[#00fbff23] bg-[#00fbff09] flex flex-col justify-center items-center text-[#a7a7a7] rounded-[10px] text-[3.5vw]">
+              <div className=" w-[30%] h-[3rem] border-[1px] border-[#00fbff23] bg-[#00fbff09] flex flex-col justify-center items-center text-[#a7a7a7] rounded-[10px] text-[3.5vw] glass3 ">
                 <div>Tournaments</div>
                 <div>0</div>
               </div>

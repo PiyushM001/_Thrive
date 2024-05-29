@@ -26,15 +26,14 @@ import Skillsform from './components/forms/skillsform';
 import Ownprofilepage3 from './components/ownprofilepage3';
 import Ownprofilepage2 from './components/ownprofilepage2';
 import Notificationpage from './components/notification';
-import Teamnameform from './components/teamnameform';
 import Skillform from './components/Skillform';
 
 function App() {
 
  
   return (
-    <>
-       
+    <div className='flex justify-center' >
+       <div className=' min-[600px]:hidden max-[600px]:w-[100%] '>
      <Router >
      <Signcontext>
     <Profilecontext>
@@ -71,8 +70,9 @@ function App() {
       </Profilecontext>  </Signcontext>
 
       </Router>
-    
-   </>
+      </div>
+      <div className='max-[600px]:hidden'>It is a Web App, can't be displayed in dekstop view , please adjust the screen width less than 500 px to see the website </div>
+   </div>
   );
 }
 

@@ -1,4 +1,6 @@
 import React from 'react'
+import './components.css'
+
 import profilebg from '../Images/profile_bg.png'
 import profilep from '../Images/profilep.png'
 import trophyp from '../Images/trophyp.svg'
@@ -8,7 +10,7 @@ export default function Player(props) {
   return (
     <>
     <Link to={`/profile/${props.id}`} className='w-[44vw] mt-4 ml-2 mr-2 '>
-      <div className='w-[44vw] h-[12.4rem]  bg-gradient-to-b from-[#000000] to-[#0fb0b81b] rounded-[10px] border-[1px] border-[#2c2c2c]'>
+      <div className='w-[44vw] h-[12.4rem]  bg-gradient-to-b from-[#000000] to-[#0fb0b81b] rounded-[10px] border-[1px] border-[#2c2c2c] glass2'>
         <div className='relative h-[5rem]'>
         <img className='rounded-t-[10px] w-[100%] h-[3.8rem]'  src={profilebg}  alt="img" ></img>
         <div className='absolute w-[100%] h-[0rem] flex justify-center items-center'><img className='  w-[5rem]' src={profilep}></img>

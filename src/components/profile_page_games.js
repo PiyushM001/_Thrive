@@ -23,7 +23,7 @@ export default function Profilepagegames() {
   const { _id } = useParams();
   const a = useContext(pContext);
 
-  const {invite,tournamentarray, skillsarray, checkfollow, checkfollowstate,teamname, getteaminfo, playerinfo, getplayerinfo, follow,getinfo,followerIngameName,followerRealName,getfollowerslist,followersarray, getfollowinglist,followingarray  } = a;
+  const {invite,tournamentarray, skillsarray, checkfollow, checkfollowstate,teamnamein, getteaminfo, playerinfo, getplayerinfo, follow,getinfo,followerIngameName,followerRealName,getfollowerslist,followersarray, getfollowinglist,followingarray  } = a;
 
   useEffect(() => {
     // console.log("chal rha")
@@ -38,7 +38,6 @@ export default function Profilepagegames() {
   // console.log("infostate",infostate)
   // console.log("playerinfo",playerinfo)
   const IngameName = playerinfo.IngameName;
-  console.log("teamname teamname",teamname)
   // const followerRealName = infostate[0].RealName;
   // const followerIngameName = infostate[0].IngameName;
   const _userid=playerinfo.user;
@@ -46,7 +45,7 @@ export default function Profilepagegames() {
     follow(_id,RealName,IngameName,followerRealName,followerIngameName);
   };
   const handleinvite = () => {
-    invite(_userid,RealName,IngameName,followerRealName,followerIngameName,teamname);
+    invite(_userid,RealName,IngameName,followerRealName,followerIngameName,teamnamein);
   };
   // about,contact,contact2,text,education , skill1, skill2, skill3, playerid, location, tournament1, tournament2,  infoid
   
@@ -133,17 +132,17 @@ const handleClose = () => {
 
           <div className="flex h-[5rem] justify-evenly items-center">
             <div className="flex w-[94%] h-[4rem] justify-evenly items-center">
-              <div  onClick={handleClickToOpenFollowers} className=" border-[1px] border-[#00fbff23] bg-[#00fbff09] w-[30%] h-[3rem] flex flex-col justify-center items-center text-[#a7a7a7] rounded-[10px] text-[3.5vw]">
+              <div  onClick={handleClickToOpenFollowers} className=" border-[1px] border-[#00fbff23] bg-[#00fbff09] w-[30%] h-[3rem] flex flex-col justify-center items-center text-[#a7a7a7] rounded-[10px] text-[3.5vw] glass3 ">
                 <div>Followers</div>
                 <div>{followersCount}</div>
               </div>
 
-              <div onClick={handleClickToOpenAllies}  className="  border-[1px] border-[#00fbff23] bg-[#00fbff09] w-[30%] h-[3rem] flex flex-col justify-center items-center text-[#a7a7a7] rounded-[10px] text-[3.5vw]">
+              <div onClick={handleClickToOpenAllies}  className="  border-[1px] border-[#00fbff23] bg-[#00fbff09] w-[30%] h-[3rem] flex flex-col justify-center items-center text-[#a7a7a7] rounded-[10px] text-[3.5vw] glass3 ">
                 <div>Allies</div>
                 <div>{followingCount}</div>
               </div>
 
-              <div className=" w-[30%] h-[3rem] border-[1px] border-[#00fbff23] bg-[#00fbff09] flex flex-col justify-center items-center text-[#a7a7a7] rounded-[10px] text-[3.5vw]">
+              <div className=" w-[30%] h-[3rem] border-[1px] border-[#00fbff23] bg-[#00fbff09] flex flex-col justify-center items-center text-[#a7a7a7] rounded-[10px] text-[3.5vw] glass3 ">
                 <div>Tournaments</div>
                 <div>0</div>
               </div>
@@ -236,7 +235,7 @@ const handleClose = () => {
 
 
 
-<div className="w-[100%] mt-1   bg-gradient-to-r from-[rgb(0,0,0)] to-[#0fafb813]  border-[1px]  border-[#262626]     ">
+<div className="w-[100%] mt-1   bg-gradient-to-r from-[rgb(0,0,0)] to-[#0fafb813]  border-[1px]  border-[#262626]  pb-5   ">
           <div className="w-full flex mt-3 ">
             <div className="text-[#00fbff] text-[1rem] ml-7   flex items-center">Skills</div>
 
@@ -262,7 +261,7 @@ const handleClose = () => {
 
 
 
-          <div className="w-[100%] mt-1 mb-[11vh]  bg-gradient-to-r from-[rgb(0,0,0)] to-[#0fafb813]  border-[1px]  border-[#262626]     ">
+          <div className="w-[100%] mt-1 mb-[11vh]  bg-gradient-to-r from-[rgb(0,0,0)] to-[#0fafb813]  border-[1px]  border-[#262626] pb-5    ">
           <div className="w-full flex mt-3 ">
             <div className="text-[#00fbff] text-[1rem] ml-7   flex items-center">Tournaments</div>
 

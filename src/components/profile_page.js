@@ -136,17 +136,17 @@ const handleClose = () => {
 
           <div className="flex h-[5rem] justify-evenly items-center">
             <div className="flex w-[94%] h-[4rem] justify-evenly items-center">
-              <div  onClick={handleClickToOpenFollowers} className=" border-[1px] border-[#00fbff23] bg-[#00fbff09] w-[30%] h-[3rem] flex flex-col justify-center items-center text-[#a7a7a7] rounded-[10px] text-[3.5vw]">
+              <div  onClick={handleClickToOpenFollowers} className=" border-[1px] border-[#00fbff23] bg-[#00fbff09] w-[30%] h-[3rem] flex flex-col justify-center items-center text-[#a7a7a7] rounded-[10px] text-[3.5vw] glass3 ">
                 <div>Followers</div>
                 <div>{followersCount}</div>
               </div>
 
-              <div onClick={handleClickToOpenAllies}  className="  border-[1px] border-[#00fbff23] bg-[#00fbff09] w-[30%] h-[3rem] flex flex-col justify-center items-center text-[#a7a7a7] rounded-[10px] text-[3.5vw]">
+              <div onClick={handleClickToOpenAllies}  className="  border-[1px] border-[#00fbff23] bg-[#00fbff09] w-[30%] h-[3rem] flex flex-col justify-center items-center text-[#a7a7a7] rounded-[10px] text-[3.5vw] glass3 ">
                 <div>Allies</div>
                 <div>{followingCount}</div>
               </div>
 
-              <div className=" w-[30%] h-[3rem] border-[1px] border-[#00fbff23] bg-[#00fbff09] flex flex-col justify-center items-center text-[#a7a7a7] rounded-[10px] text-[3.5vw]">
+              <div className=" w-[30%] h-[3rem] border-[1px] border-[#00fbff23] bg-[#00fbff09] flex flex-col justify-center items-center text-[#a7a7a7] rounded-[10px] text-[3.5vw] glass3 ">
                 <div>Tournaments</div>
                 <div>0</div>
               </div>
@@ -196,7 +196,7 @@ const handleClose = () => {
 
 
 
-        <div className="w-full flex flex-col justify-center items-center bg-[#0a0a0a]   ">
+        <div className="w-full flex flex-col justify-center items-center bg-[#0a0a0a] mb-5  ">
 
 
 
@@ -229,7 +229,7 @@ const handleClose = () => {
             </div>
           </div>
 
-          <div className="w-[100%]  bg-gradient-to-r from-[#000000] to-[#0fafb813] mt-1   border-[1px]  border-[#262626]     ">
+          <div className="w-[100%]  bg-gradient-to-r from-[#000000] to-[#0fafb813] mt-1 mb-1  border-[1px]  border-[#262626]     ">
             <div className="text-[#00fbff] ml-7 mt-2">Location</div>
             <div className="text-[#959595] font-teachers  mt-2 ml-7 mb-4  mr-3   font-light text-[3.5vw] from-inherit ">
               {location}

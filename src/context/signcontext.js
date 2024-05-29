@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { createContext } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -9,7 +9,7 @@ export const sContext = createContext();
 const port = "http://localhost:5000"
 
 export default function Signcontext(props) {
-  const host = "localhost:5000";
+  // const host = "localhost:5000";
 
   let navigate = useNavigate();
 

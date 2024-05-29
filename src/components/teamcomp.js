@@ -1,15 +1,17 @@
 import React from 'react'
+import './components.css'
+
 import pp from '../Images/org.png'
 export default function Teamcomp(props) {
   return (
-    <div className='bg-[#323232] flex justify-center items-center'>
+    <div className='bg-[#323232] h-[10vh] w-full flex justify-center items-center glass3 mb-1'>
       
-      <img className='w-[20vw] h-[20vw] m-2' src={pp}></img>
+      <img className='w-[10vw]  m-2' src={pp}></img>
       <div className='w-[74%]'> 
-        <div className='text-[#ffffff] font-mochiy-pop text-[5vw]'>{props.teamname}</div>
+        <div className='text-[#ffffff] font-mochiy-pop text-[4vw]'>{props.teamname}</div>
 
 
-        <div className='flex text-[#5f5f5f] text-[3vw] font-mochiy-pop'>
+        <div className='flex text-[#9c9c9c] text-[3.2vw] font-teachers'>
         <div className='mr-1'>{props.teammember1}</div>,
         <div className='mr-1'>{props.teammember2}</div>,
         <div className='mr-1'>{props.teammember3}</div>

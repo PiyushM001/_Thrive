@@ -273,7 +273,7 @@ export default function Ownprofilepage() {
 <div className="flex w-[94%] h-[4rem] justify-evenly items-center">
   <Link
     to={`/followers/${_id}`}
-    className=" border-[1px] font-teachers border-[#00fbff20] bg-[#00fbff09]  w-[30%] h-[3rem] flex flex-col justify-center items-center text-[#a7a7a7] rounded-[10px] text-[3.5vw]"
+    className=" border-[1px] font-teachers border-[#00fbff20] bg-[#00fbff09]  w-[30%] h-[3rem] flex flex-col justify-center items-center text-[#a7a7a7] rounded-[10px] text-[3.5vw] glass3 "
   >
     <div>Followers</div>
     <div>{value.followersCount}</div>
@@ -281,13 +281,13 @@ export default function Ownprofilepage() {
 
   <Link
     to={`/following/${_id}`}
-    className=" border-[1px] font-teachers border-[#00fbff20] bg-[#00fbff09] w-[30%] h-[3rem] flex flex-col justify-center items-center text-[#a7a7a7] rounded-[10px] text-[3.5vw]"
+    className=" border-[1px] font-teachers border-[#00fbff20] bg-[#00fbff09] w-[30%] h-[3rem] flex flex-col justify-center items-center text-[#a7a7a7] rounded-[10px] text-[3.5vw] glass3 "
   >
     <div>Allies</div>
     <div>{value.followingCount}</div>
   </Link>
 
-  <div className=" border-[1px] font-teachers border-[#00fbff20] bg-[#00fbff09]  w-[30%] h-[3rem] flex flex-col justify-center items-center text-[#a7a7a7] rounded-[10px] text-[3.5vw]">
+  <div className=" border-[1px] font-teachers border-[#00fbff20] bg-[#00fbff09]  w-[30%] h-[3rem] flex flex-col justify-center items-center text-[#a7a7a7] rounded-[10px] text-[3.5vw] glass3 ">
     <div>Tournaments</div>
     <div>0</div>
   </div>

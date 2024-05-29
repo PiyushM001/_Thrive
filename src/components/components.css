@@ -4,18 +4,58 @@ background: rgba(1, 15, 17, 0.908);
 border-top-left-radius: 16px;
 border-top-right-radius: 16px;
 
-backdrop-filter: blur(20px);
+backdrop-filter: blur(5px);
 -webkit-backdrop-filter: blur(5px);
 border-top: 1px solid rgba(255, 255, 255, 0.3);
 }
 .headerbg{
     /* From https://css.glass */
     background: rgba(1, 15, 17, 0.908);
+    border-bottom-left-radius: 16px;
+    border-bottom-right-radius: 16px;
+  
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  }
+  .glass{
+    /* From https://css.glass */
+    background: rgba(255, 12, 12, 0.084);
+ 
+  
+    box-shadow: 0px 0px 0px 1px rgba(5, 217, 255, 0.8),
+ 	  inset 0px 10px 80px 20px #000000,
+ 	  0 0 0px 0px rgba(20, 227, 245, 0.54),
+ 	  inset 0 0 5px 4px #12fffb;
+  }
+  .glass2{
+    /* From https://css.glass */
+    background: rgba(0, 0, 0, 0);
+ 
+  
+    box-shadow: 0px 0px 0px 0px rgba(115, 0, 0, 0.8),
+ 	  inset 0px 10px 80px 20px #000000,
+ 	  0 0 0px 0px rgba(0, 234, 255, 0.795),
+ 	  inset 0 0 4px 2px #12fffb;
+  }
+  .glass3{
+    /* From https://css.glass */
+    background: rgba(0, 0, 0, 0);
+ 
+  
+    box-shadow: 0px 0px 0px 1px rgba(5, 251, 255, 0.332),
+ 	  inset 0px 0px 0px 0px #000000,
+ 	  0 0 0px 0px rgba(20, 227, 245, 0.54),
+ 	  inset 0px 0px 10px 1px #12fffb32;
+  }
+  .glassbtn{
+    /* From https://css.glass */
+    background: rgba(1, 15, 17, 0.908);
  
   
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(5px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  border: 1px solid rgb(6, 201, 255);
   }
   .tournamentbg{
     /* From https://css.glass */

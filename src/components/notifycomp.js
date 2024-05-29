@@ -29,7 +29,7 @@ useEffect(() => {
 
 
     const acceptinvitefun = () => {
-         acceptinvite(_userid,RealName,IngameName,followerRealName,followerIngameName);
+         acceptinvite(_userid,RealName,IngameName,followerRealName,followerIngameName,teamname);
     };
     const ignoreinvitefun = () => {
         ignoreinvite(_userid,RealName,IngameName,followerRealName,followerIngameName);

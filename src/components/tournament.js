@@ -1,9 +1,11 @@
 import React from 'react'
+import './components.css'
+
 import profile from '../Images/profile.svg';
 import './components.css'
 export default function Tournament(props) {
   return (
-    <div className='w-[90%] bg-gradient-to-b from-[#000000] to-[#0fb0b80a]  m-2 rounded-[10px] border-[1px] border-[#383838]  '>
+    <div className='w-[90%] bg-gradient-to-b from-[#000000] to-[#0fb0b80a]  m-2 rounded-[10px] border-[1px] border-[#383838] glass2 '>
 
 
 

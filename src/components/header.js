@@ -6,7 +6,7 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import profile from '../Images/profile2.svg';
+import profile from '../Images/profile2.png';
 import chat from '../Images/chat-icon.svg';
 import bell from '../Images/notification-icon.svg';
 import { Link } from 'react-router-dom';
@@ -24,8 +24,8 @@ export default function Header() {
    },[])
 
   return (
-    <div className='flex w-full h-[10vh] absolute top-0 bg-[#000000] justify-evenly items-center headerbg z-[100000]'>
-          {loginstate && <Link className='w-[4rem] mr-[-5vw] ml-[-5vw]' to="/profile"><img className=' w-[150%] ' src={profile}></img>
+    <div className='flex w-full h-[10vh] absolute top-0 bg-[#000000] justify-evenly items-center headerbg z-[100000]  min-[500px]:w-[500px]'>
+          {loginstate && <Link className='w-[3.5rem] ' to="/profile"><img className=' w-[80%] rounded-[100%] ' src={profile}></img>
 </Link>}
 
 {!loginstate && <Link to="/loginas"><div className='border-[2px] border-[#B4FF16] rounded-[10px] pl-2 pr-2 pt-1 pb-1 text-[#ffffff] text-[3vw]'> Sign up</div></Link>}

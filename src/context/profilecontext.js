@@ -46,12 +46,12 @@ export default function Profilecontext(props) {
   const tournamentarr = [];
   const [skillsarray, setskillsarray] = useState(skillarr);
   const [tournamentarray, settournamentarray] = useState(tournamentarr);
-
+const [checkteam,setcheckteam]= useState(" ");
   const [users, setusers] = useState(userinfo);
   const [playerinfo, setplayerinfo] = useState(infoplayer);
   const [playerinfo2, setplayerinfo2] = useState(infoplayer2);
   const [ownid, setownid] = useState("");
-  const [teamname, setteamname] = useState(" ");
+  const [teamnamein, setteamnamein] = useState(" ");
   const [followerRealName, setfollowerRealName] = useState("");
   const [followerIngameName, setfollowerIngameName] = useState("");
   const [checkfollowstate, setcheckfollowstate] = useState("Follow");
@@ -80,6 +80,8 @@ export default function Profilecontext(props) {
     setfollowerIngameName(data[0].IngameName);
   };
 
+
+
   const getteaminfo = async () => {
     const response = await fetch(`${port}/getteaminfo`, {
       method: "GET",
@@ -98,8 +100,8 @@ export default function Profilecontext(props) {
     // setownid(data[0]._id)
     // localStorage.setItem("infoid", data[0]._id);
 
-    setteamname(data[0].teamname);
-    // console.log(data[0].teamname)
+    setteamnamein(data[0].teamname);
+    setteamarray(data[0].team)
   };
 
   // const getplayerinfo= async (_id)=>{
@@ -227,9 +229,9 @@ export default function Profilecontext(props) {
         if (response.ok) {
           toast.success("submission Successful");
           localStorage.setItem("teamid", x._id);
-          navigate("/team_page");
+getteaminfo();
         } else {
-          toast.error("sdgds");
+          toast.error("Something Went Wrong");
         }
         // toast(res.json())
       })
@@ -352,6 +354,13 @@ export default function Profilecontext(props) {
       });
   };
 
+
+
+
+
+
+
+
   const checkfollow = async (_id) => {
     // API Call
     const response = await fetch(`${port}/checkfollow`, {
@@ -379,6 +388,16 @@ export default function Profilecontext(props) {
         toast(err);
       });
   };
+
+
+
+
+
+
+
+
+
+
 
   const invite = async (
     _userid,
@@ -422,12 +441,22 @@ export default function Profilecontext(props) {
       });
   };
 
+
+
+
+
+
+
+
+
+
   const acceptinvite = async (
     _userid,
     RealName,
     IngameName,
     followerRealName,
-    followerIngameName
+    followerIngameName,
+    teamname
   ) => {
     // API Call
     const response = await fetch(`${port}/team`, {
@@ -442,6 +471,7 @@ export default function Profilecontext(props) {
         IngameName,
         followerRealName,
         followerIngameName,
+        teamname
       }),
     })
       .then(async (response) => {
@@ -461,6 +491,18 @@ export default function Profilecontext(props) {
         toast(err);
       });
   };
+
+
+
+
+
+
+
+
+
+
+
+
 
   const ignoreinvite = async (
     _userid,
@@ -500,6 +542,17 @@ export default function Profilecontext(props) {
       });
   };
 
+
+
+
+
+
+
+
+
+
+
+
   const getfollowerslist = async (_id) => {
     const response = await fetch(`${port}/getplayerinfo`, {
       method: "POST",
@@ -512,6 +565,17 @@ export default function Profilecontext(props) {
     // console.log("upar",data);
     setfollowersarray(data.followers);
   };
+
+
+
+
+
+
+
+
+
+
+
 
   const getfollowinglist = async (_id) => {
     const response = await fetch(`${port}/getplayerinfo`, {
@@ -526,6 +590,17 @@ export default function Profilecontext(props) {
     setfollowingarray(data.following);
   };
 
+
+
+
+
+
+
+
+
+
+
+
   const getnotification = async (_id) => {
     const response = await fetch(`${port}/getnotification`, {
       method: "GET",
@@ -539,18 +614,29 @@ export default function Profilecontext(props) {
     setnotificationarray(data.invitinguser);
   };
 
-  const getteam = async (_id) => {
-    const response = await fetch(`${port}/getnotification`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        token: localtoken,
-      },
-    });
-    const data = await response.json();
-    // console.log("notifi",data.invitinguser);
-    setteamarray(data);
-  };
+
+
+
+
+
+
+//   const getteam = async (_id) => {
+//     const response = await fetch(`${port}/getnotification`, {
+//       method: "GET",
+//       headers: {
+//         "Content-Type": "application/json",
+
+//       },
+//       body: JSON.stringify({ _id }),
+//     });
+//     const data = await response.json();
+//     setteamarray(data);
+// setcheckteam(data.teamname)
+//   };
+
+
+
+
   // const createinfo= async ( text , playerid , device)=>{
 
   //   const response = await fetch(`${port}/createinfo", {
@@ -566,6 +652,18 @@ export default function Profilecontext(props) {
   //   setinfostate(infostate.concat(forminfo))
   // }
 
+
+
+
+
+
+
+
+
+
+
+
+
   const getplayers = async () => {
     const response = await fetch(`${port}/getplayers`, {
       method: "GET",
@@ -577,6 +675,21 @@ export default function Profilecontext(props) {
     setusers(data);
   };
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   // const followerRealName = infostate[0].RealName;
   //   const followerIngameName = infostate[0].IngameName;
   // getfollowinglist,getfollowerslist
@@ -587,14 +700,14 @@ export default function Profilecontext(props) {
         tournamentarray,
         getteaminfo,
         ignoreinvite,
-        teamname,
+        teamnamein,
         checkfollowstate,
         post,
         ownid,
         checkfollow,
         notificationarray,
         teamarray,
-        getteam,
+        // getteam,
         acceptinvite,
         createteam,
         getnotification,
@@ -616,6 +729,7 @@ export default function Profilecontext(props) {
         followerIngameName,
         getfollowinglist,
         getfollowerslist,
+        checkteam
       }}
     >
       {props.children}
