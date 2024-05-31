@@ -10,7 +10,6 @@ export default function Teamcomp(props) {
       <div className='w-[74%]'> 
         <div className='text-[#ffffff] font-mochiy-pop text-[4vw]'>{props.teamname}</div>
 
-
         <div className='flex text-[#9c9c9c] text-[3.2vw] font-teachers'>
         <div className='mr-1'>{props.teammember1}</div>,
         <div className='mr-1'>{props.teammember2}</div>,

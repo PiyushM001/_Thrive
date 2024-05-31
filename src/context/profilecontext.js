@@ -44,6 +44,8 @@ export default function Profilecontext(props) {
   const infoplayer2 = [];
   const skillarr = [];
   const tournamentarr = [];
+  const chatarr=[];
+  const [chatarray,setchatarray]=useState(chatarr);
   const [skillsarray, setskillsarray] = useState(skillarr);
   const [tournamentarray, settournamentarray] = useState(tournamentarr);
 const [checkteam,setcheckteam]= useState(" ");
@@ -75,10 +77,14 @@ const [checkteam,setcheckteam]= useState(" ");
     setownid(data[0]._id);
     // setownid(data[0]._id)
     localStorage.setItem("infoid", data[0]._id);
+    localStorage.setItem("MyRealName", data[0].RealName);
+    localStorage.setItem("MyGameName", data[0].IngameName);
 
     setfollowerRealName(data[0].RealName);
     setfollowerIngameName(data[0].IngameName);
   };
+
+
 
 
 
@@ -95,13 +101,16 @@ const [checkteam,setcheckteam]= useState(" ");
       toast(err);
     });
     const data = await response.json();
+    // await getChats(data[0].teamname);
+
     // setinfostate(data)
     // setownid(data[0]._id)
     // setownid(data[0]._id)
     // localStorage.setItem("infoid", data[0]._id);
 
-    setteamnamein(data[0].teamname);
-    setteamarray(data[0].team)
+     setteamnamein(data[0].teamname);
+    setteamarray(data[0].team);
+    // await getChats(data[0].teamname)
   };
 
   // const getplayerinfo= async (_id)=>{
@@ -186,6 +195,35 @@ const [checkteam,setcheckteam]= useState(" ");
   //     toast(err);
   //   });}
 
+  const getChats = async (teamname) => {
+    const response = await fetch(`${port}/getChats`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ teamname}),
+    }).catch((err) => {
+      toast(err);
+    });
+    const data = await response.json();
+    // console.log("lun",data[0].chat)
+
+  setchatarray(data[0].chat);
+  
+  };
+
+
+
+
+
+
+
+
+
+
+
+
+
   const createinfo = async (IngameName, RealName, game) => {
     const response = await fetch(`${port}/createinfo`, {
       method: "POST",
@@ -215,7 +253,7 @@ const [checkteam,setcheckteam]= useState(" ");
 
   const createteam = async (teamname) => {
     const response = await fetch(`${port}/createteam`, {
-      method: "PUT",
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
         token: localtoken,
@@ -354,7 +392,44 @@ getteaminfo();
       });
   };
 
+  const chatfun = async (
+    teamname,
+    userId,
+    userRealName,
+    time,
+    message
+  ) => {
+    // API Call
+    const response = await fetch(`${port}/chat`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        token: localtoken,
+      },
+      body: JSON.stringify({
+        teamname,
+        userId,
+        userRealName,
+        time,
+        message
+      }),
+    })
+      .then(async (response) => {
+        // const st = await response.text();
+        // console.log("yedekh kedfhdfhdfhfghdshgdfshdf",response.text())
+        const p = await response.text();
 
+        if (response.ok) {
+        
+        } else {
+          toast.error(p);
+        }
+        // toast(res.json())
+      })
+      .catch((err) => {
+        toast(err);
+      });
+  };
 
 
 
@@ -696,6 +771,9 @@ getteaminfo();
   return (
     <pContext.Provider
       value={{
+        chatfun,
+        getChats,
+        chatarray,
         skillsarray,
         tournamentarray,
         getteaminfo,

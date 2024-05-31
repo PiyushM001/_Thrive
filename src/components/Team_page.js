@@ -11,81 +11,79 @@ import {  Link, useParams } from "react-router-dom";
 import loadinggif from '../Images/loading.gif'
 import Teamcomp from './teamcomp';
 import Header from './header';
+import Chatpage from './chatpage'
 
 export default function Teampage() {
   const a=useContext(pContext);
   const [showform,setshowform]= useState(false)
  const { _id } = useParams();
-  const {getteaminfo,teamarray,createteam,checkteam,teamnamein}= a;
+  const {getteaminfo,teamarray,createteam,checkteam,teamnamein,chatfun,chatarray,getChats}= a;
   const [teamname, setteamname]=useState("")
-
-  
  const [loading, setLoading] = useState(false);
 
 
-const fetchData = async ()=>{
-  setLoading(true);
 
-  try{
-    getteaminfo(_id)
+
+// const fetchData = async ()=>{
+//   setLoading(true);
+
+//   try{
+//    await getteaminfo(_id)
+   
+//   }
+//   finally{
+    
+//     setLoading(false);
+// if(teamnamein){
+//     setshowform(true)
+//   }
+//   }
+// }
+
+
+const funt= async ()=>{
+  await getteaminfo(_id)
+
+  if(teamnamein){
+  setshowform(true) 
   }
-  finally{
-    setLoading(false);
-if(teamnamein){
-    setshowform(true)
-  }
-  }
+  setLoading(false)
+
 }
+ useEffect(() => {
+  setLoading(true);
+ funt();
 
- useEffect( () => {
-  
-  fetchData()
 }, []);// eslint-disable-line react-hooks/exhaustive-deps
 
 
+//  const chatarray=[{message:"hi"},{message:"hello"}]
 
-console.log("teamnamein",teamarray)
+
+// console.log("teamnamein",teamarray)
 
 
 
 const handleaftersignup=(e)=>{
 
- createteam(teamname)
+ createteam(teamname);
+
 }
 
+
+
+ 
+
   return (
-    <div className='flex flex-col justify-center h-[100vh] bg-[#000000] w-full'><ToastContainer/>
+    
+    <div className=' h-[100vh] bg-[#000000] w-full '><ToastContainer/>
 {loading && <div className='absolute w-full inset-0 opacity-90 fill-neutral-950 z-[1000]'><div className='h-[30vh] bg-[#000000]'></div><img className='' src={loadinggif}></img><div className='h-[30vh] bg-[#000000]'></div></div>}
 
 
-
-
-
-
-
-
-     
+    
 {showform && 
-<div className='flex flex-col items-center'>
-<Teamcomp teamname={teamnamein} teammember1="wet" teammember2="wet" teammember3="wet"  />
-
-  <div className="bg-[#000000] w-[80%] h-[80vh]  overflow-y-scroll">
-
-{teamarray.map((value)=>(
-                <Followcomp key={value.id} RealName={value.followerRealName} IngameName={value.followerIngameName} />
-                ))}
-   </div>
-
-<div className='flex w-full  bg-black text-[#4a4a4a]'> 
-            <div className='h-full w-[100%] bg-[#000000] flex justify-center items-center'>
-        <div className='w-[95%] h-full flex items-end '>
-        <input placeholder='Chat ' className='bg-[#3b3b3b] m-5 w-[90%] rounded-[10px] h-[2rem]' ></input>
-
-        </div>
-      </div>
-
-      </div> 
-</div> }
+<Chatpage/>
+}
 
 
 
@@ -97,9 +95,9 @@ const handleaftersignup=(e)=>{
 
 
 {!showform &&  <section class=" bg-[#000000] h-[100vh]  flex-col justify-center  items-center"><ToastContainer/>
-  <div class="flex flex-col items-center justify-center px-2  mx-auto md:h-screen lg:py-0 w-[85%] mt-[15vh] ">
+  <div class="flex flex-col items-center justify-center px-2  mx-auto md:h-screen lg:py-0 w-[85%]  ">
       
-      <div class="w-full bg-[#1b1b1b] border-[#414141] rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0  glass2 ">
+      <div class="w-full bg-[#1b1b1b] border-[#414141] rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0  glass2 mt-[15vh] ">
           <div class="p-4 ">
              
               <form class=" " action="#">
@@ -117,7 +115,7 @@ const handleaftersignup=(e)=>{
           </div>
       </div>
       <Link to="/notification" className='w-[100%] mt-5 h-[15vh] rounded-[10px] glass2 flex justify-center items-center text-[#ffffff] font-teachers '> Accept invites from Other Players</Link>
-      <img src={team} className='mt-10' alt=" img"></img>
+      <img src={team} className='mt-[3rem]' alt=" img"></img>
 
   </div>
 </section>}
