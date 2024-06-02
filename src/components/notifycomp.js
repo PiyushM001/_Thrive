@@ -37,14 +37,14 @@ useEffect(() => {
      
   return (
     <div className=" bg-gradient-to-r from-[#000000] to-[#0fafb813]  m-5 rounded-[10px]  flex items-center relative border-[1px] border-[#5b5b5b]  ">
-      <div  className="absolute left-[-1rem] top-[-1rem] w-[5rem] h-[5rem] border-[4vw] rounded-l-[0] rounded-r-[50%] border-[#0e0e0e]  bg-[#0e0e0e] flex items-center "><img className=" rounded-[100%]  " src={profile}></img></div>
+      <div  className=" w-[5rem] h-[5rem] border-[1px]  rounded-[20%] ml-3 border-[#2e2e2e]  bg-[#0e0e0e] flex items-center "><img className=" rounded-[100%]  " src={profile}></img></div>
     {/* <h1 className="text-[re]" >  {props.id}</h1>
     <h1> {props.RealName}</h1>
     <h1> {props.IngameName}</h1> */}
-    <div className="w-[20%]"></div>
+   
     <div className="w-[80%]">
 <div className="text-[#ffffff] font-mochiy-pop text-[3.5vw] font-thin ml-[6vw] m-1">
-              {IngameName} <span className="text-[#656565] font-thin text-[3vw] m-1 "> invited you to join team</span> {teamname}
+              {IngameName} <span className="text-[#909090] font-thin text-[3vw] m-1 "> invited you to join team</span> <span className="text-[red] text-[3vw]">{teamname}</span>
             </div>
             {/* <div className=" font-medium text-[60%] h-[30%] flex items-center text-[#656565] ml-[6vw]">
               {RealName}

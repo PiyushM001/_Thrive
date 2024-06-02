@@ -57,6 +57,9 @@ const [checkteam,setcheckteam]= useState(" ");
   const [followerRealName, setfollowerRealName] = useState("");
   const [followerIngameName, setfollowerIngameName] = useState("");
   const [checkfollowstate, setcheckfollowstate] = useState("Follow");
+  const [NotificationCount, setNotificationCount] = useState(0);
+  const [Profilepic, setProfilepic] = useState(0);
+  const [bgpic, setbgpic] = useState(0);
 
   let navigate = useNavigate();
 
@@ -94,23 +97,15 @@ const [checkteam,setcheckteam]= useState(" ");
       headers: {
         "Content-Type": "application/json",
         token: localtoken,
-        // "token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjYwNDI3NjExMDllMDkwZDFiN2RiMTRhIn0sImlhdCI6MTcxMTU0ODI1N30.QvddnhBp70FoZklQktEulbxCabHz6xKhRxiEBBnZU2A"
-        // "token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjYxMTQzYTY4YTdkZDhmNmJiM2Y2NDhmIn0sImlhdCI6MTcxMjQ3MTc4N30.Sorq9yPPBLVBw8HgIAYU7uV1ojwri6ckKAOUDihUZqw"
       },
     }).catch((err) => {
       toast(err);
     });
     const data = await response.json();
-    // await getChats(data[0].teamname);
-
-    // setinfostate(data)
-    // setownid(data[0]._id)
-    // setownid(data[0]._id)
-    // localStorage.setItem("infoid", data[0]._id);
-
+  
+    await getChats(data[0].teamname);
      setteamnamein(data[0].teamname);
     setteamarray(data[0].team);
-    // await getChats(data[0].teamname)
   };
 
   // const getplayerinfo= async (_id)=>{
@@ -267,7 +262,7 @@ const [checkteam,setcheckteam]= useState(" ");
         if (response.ok) {
           toast.success("submission Successful");
           localStorage.setItem("teamid", x._id);
-getteaminfo();
+// getteaminfo();
         } else {
           toast.error("Something Went Wrong");
         }
@@ -686,7 +681,9 @@ getteaminfo();
     });
     const data = await response.json();
     // console.log("notifi",data.invitinguser);
-    setnotificationarray(data.invitinguser);
+    setnotificationarray(data[0].invitinguser);
+    console.log(data[0].invitinguser,"inviting use")
+     setNotificationCount(data[0].NotificationCount)
   };
 
 
@@ -739,9 +736,21 @@ getteaminfo();
 
 
 
-  const getplayers = async () => {
-    const response = await fetch(`${port}/getplayers`, {
-      method: "GET",
+  // const getplayers = async () => {
+  //   const response = await fetch(`${port}/getplayers`, {
+  //     method: "GET",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //   });
+  //   const data = await response.json();
+  //   setusers(data);
+  // };
+
+
+  const getplayers = async (page,query = '') => {
+    const response = await fetch(`${port}/getplayers?page=${page}&q=${query}`, {
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
@@ -749,10 +758,41 @@ getteaminfo();
     const data = await response.json();
     setusers(data);
   };
+  
+  // const getplayers = async (page = 1, pageSize = 10, query = '') => {
+  //   try {
+  //     const response = await fetch(`${port}/getplayers?page=${page}&pageSize=${pageSize}&q=${query}`, {
+  //       method: "GET",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //     });
+  //     const data = await response.json();
+  //     setusers(data);
+  //   } catch (error) {
+  //     console.error("Error fetching players:", error);
+  //     // Handle error if necessary
+  //   }
+  // };
+  
 
-
-
-
+  const fetchProfilePicture = async (userId) => {
+    try {
+      const response = await fetch(`${port}/cloud/profile-picture/${userId}`);
+      
+      if (response.ok) {
+        const data = await response.json();
+        setProfilepic(data.url)
+        setbgpic(data.url2)
+      } else {
+        console.error('Error fetching profile picture', response.statusText);
+        throw new Error(response.statusText);
+      }
+    } catch (error) {
+      console.error('Error fetching profile picture', error);
+      throw error;
+    }
+  };
 
 
 
@@ -772,6 +812,10 @@ getteaminfo();
     <pContext.Provider
       value={{
         chatfun,
+        Profilepic,
+        bgpic,
+        NotificationCount,
+        fetchProfilePicture,
         getChats,
         chatarray,
         skillsarray,
@@ -783,7 +827,7 @@ getteaminfo();
         post,
         ownid,
         checkfollow,
-        notificationarray,
+        notificationarray,notificationarray,
         teamarray,
         // getteam,
         acceptinvite,

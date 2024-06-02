@@ -9,6 +9,10 @@ import DialogContent from "@material-ui/core/DialogContent";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 
+
+import profilealt from '../Images/profile2.png';
+import { IoCamera } from "react-icons/io5";
+
 import Footer from "./footer";
 import profilebg from "../Images/profile_bg.png";
 import profilep from "../Images/profilep.png";
@@ -33,9 +37,10 @@ export default function Ownprofilepage() {
 
   const infoid = localStorage.getItem("infoid");
 
-  const {  ownid, getinfo, infostate, updateinfo,getfollowerslist,followersarray,followingarray, getfollowinglist } = a;
+  const {  ownid, getinfo, infostate, updateinfo,getfollowerslist,followersarray,followingarray, getfollowinglist,fetchProfilePicture ,Profilepic,bgpic} = a;
   useEffect(() => {
     getinfo();
+    fetchProfilePicture(infoid)
   }, []);
 
   const logoutfun = () => {
@@ -228,13 +233,16 @@ export default function Ownprofilepage() {
             </div>
           </Transition>
           <div>
-            <div>
-              <img className="w-[100vw] h-[6rem]" src={profilebg} alt="img"></img>
+
+            <div className="bg-[#000000] relative flex flex-col items-end">
+              <img className="w-[100vw] h-[6rem]" src={bgpic} alt="Upload Background "></img>
+              <Link to="/post/bg" style={{color:"#f5f5f5"}} className="bg-[#686868] rounded-[100%] w-[1.5rem] h-[1.5rem] flex justify-center items-center  mt-[-2rem] mr-[1rem]"  ><IoCamera /></Link>
             </div>
 
             <div className="flex h-[4rem] relative items-center">
-              <div className="absolute left-0 bottom-0">
-                <img className="w-[35vw]" src={profilep} alt="img"></img>
+              <div className="absolute left-0 bottom-0 flex">
+                <img className="w-[7rem] rounded-[100%] ml-4 border-[2px] border-[#4ddcf5]" src={Profilepic} alt={profilealt}></img>
+                <Link to="/post/Profile" style={{color:"#f5f5f5"}} className="bg-[#686868] rounded-[100%] w-[1.5rem] h-[1.5rem] flex justify-center items-center mt-[5rem] ml-[-1.3rem]"  ><IoCamera /></Link>
               </div>
               <div className="w-[40%]"></div>
               <div className="flex w-[60%] justify-end ">

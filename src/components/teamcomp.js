@@ -4,7 +4,7 @@ import './components.css'
 import pp from '../Images/org.png'
 export default function Teamcomp(props) {
   return (
-    <div className='bg-[#323232] h-[10vh] w-full flex justify-center items-center glass3 mb-1'>
+    <div className='bg-[#323232] h-[10vh] w-full flex justify-center items-center  mb-1 headerbg'>
       
       <img className='w-[10vw]  m-2' src={pp}></img>
       <div className='w-[74%]'> 

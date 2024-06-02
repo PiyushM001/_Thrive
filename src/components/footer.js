@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import './components.css'
+import { pContext } from "../context/profilecontext";
+import { useContext } from "react";
 import img from '../Images/Frame 121075512.svg'
 import img0 from '../Images/hl.svg'
 import img2 from '../Images/Frame 121075517.svg'
@@ -17,9 +19,14 @@ import img50 from '../Images/teamicon22.svg'
 import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 export default function Footer() {
+  const a = useContext(pContext);
+  const {
+    teamnamein
+  } = a;
+  
   let location = useLocation();
   let path = location.pathname;
-  
+
   return (
     <div className='flex w-full h-[10vh] absolute bottom-0 bg-[#0e0e0e00] justify-evenly footerbg  z-[10000]  min-[500px]:w-[500px]'>
     
@@ -28,7 +35,9 @@ export default function Footer() {
       {/* <Link className='flex items-center' to="/post"><img className='w-[18vw]' src={path==="/post"?img20:img2}></img></Link> */}
 
       <Link className='flex items-center' to="/tournaments"><img className='w-[18vw] h-[4rem]' src={path==="/tournaments"?img30:img3} alt="img"></img></Link>
-      <Link className='flex items-center' to="/team"><img className='w-[18vw] h-[4rem] ' src={path==="/team"?img50:img5} alt="img"></img></Link>
+      <Link className='flex items-center' to={teamnamein ? "/chatteam" : "/maketeam"}>
+  <img className='w-[18vw] h-[4rem]' src={path === "/team" ? img50 : img5} alt="img" />
+</Link>
     </div>
     
   )

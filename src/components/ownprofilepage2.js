@@ -16,13 +16,14 @@ import profilebg from "../Images/profile_bg.png";
 import profilep from "../Images/profilep.png";
 import settings from "../Images/Settings.svg";
 import cross from "../Images/cross.svg";
+import profilealt from '../Images/profile2.png';
 
 import posticon from "../Images/posticon.svg";
 
 import { pContext } from "../context/profilecontext";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-
+import { IoCamera } from "react-icons/io5";
 import { Link, useParams } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 
@@ -33,10 +34,11 @@ export default function Ownprofilepage() {
 
   const infoid = localStorage.getItem("infoid");
   const { _idd } = useParams();
-  const {  ownid, getinfo,infostate, updateinfo ,followersarray, getfollowinglist,getfollowerslist} = a;
+  const {  ownid, getinfo,infostate, updateinfo ,followersarray, getfollowinglist,getfollowerslist,fetchProfilePicture,Profilepic,bgpic} = a;
   const _id = ownid;
   useEffect(() => {
     getinfo();
+    fetchProfilePicture(infoid)
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const logoutfun = () => {
@@ -178,8 +180,8 @@ export default function Ownprofilepage() {
 
   return (
     <>
-      {infostate.map((value) => (
-        <div className="bg-[#000000] w-full h-[100vh] overflow-y-scroll">
+     {infostate.map((value) => (
+        <div className="bg-gradient-to-r from-[#000000] to-[#000000] w-full h-[100vh] overflow-y-scroll">
           <ToastContainer />
           <Transition
             show={isOpen}
@@ -226,17 +228,22 @@ export default function Ownprofilepage() {
             </div>
           </Transition>
           <div>
-            <div>
-              <img className="w-[100vw] h-[6rem]" src={profilebg} alt="img"></img>
+
+            <div className="bg-[red] relative flex flex-col items-end">
+              <img className="w-[100vw] h-[6rem]" src={bgpic} alt="img"></img>
+              <Link to="/post/bg" style={{color:"#f5f5f5"}} className="bg-[#686868] rounded-[100%] w-[1.5rem] h-[1.5rem] flex justify-center items-center  mt-[-2rem] mr-[1rem]"  ><IoCamera /></Link>
             </div>
 
             <div className="flex h-[4rem] relative items-center">
-              <div className="absolute left-0 bottom-0">
-                <img className="w-[35vw]" src={profilep} alt="img"></img>
+              <div className="absolute left-0 bottom-0 flex">
+                <img className="w-[7rem] rounded-[100%] ml-4 border-[2px] border-[#4ddcf5]" src={Profilepic} alt={profilealt}></img>
+                <Link to="/post/Profile" style={{color:"#f5f5f5"}} className="bg-[#686868] rounded-[100%] w-[1.5rem] h-[1.5rem] flex justify-center items-center mt-[5rem] ml-[-1.3rem]"  ><IoCamera /></Link>
               </div>
               <div className="w-[40%]"></div>
               <div className="flex w-[60%] justify-end ">
-              
+                {/* <Link className="m-2" to="/ProfileForm">
+                  <img src={editicon}></img>
+                </Link> */}
 
                 <Link
                   className="  flex justify-center items-center "
@@ -274,6 +281,18 @@ export default function Ownprofilepage() {
                 {value.RealName}
               </div>
             </div>
+
+
+
+
+
+
+
+
+
+
+
+
 
             <div className="flex  h-[5rem] justify-evenly items-center ">
               <div className="flex w-[94%] h-[4rem] justify-evenly items-center">

@@ -11,7 +11,7 @@ import Profilepage from './components/profile_page';
 import Profilepageposts from './components/profile_page_posts';
 import Profilepagegames from './components/profile_page_games';
 import Players from './components/players_page';
-import Postpage from './components/post_page';
+import Postpage from './components/profile_post_page';
 import Profileform from './components/profile_form';
 import Profilecontext from './context/profilecontext';
 import Login_page from './components/login';
@@ -21,13 +21,16 @@ import Signcontext from './context/signcontext';
 import Aftersignupform from './components/aftersignupform';
 import Ownprofilepage from './components/ownprofilepage';
 import Loginas from './components/loginas';
-import Teampage from './components/Team_page';
+import Teampage from './components/makeTeam';
 import Skillsform from './components/forms/skillsform';
 import Ownprofilepage3 from './components/ownprofilepage3';
 import Ownprofilepage2 from './components/ownprofilepage2';
 import Notificationpage from './components/notification';
 import Skillform from './components/Skillform';
-
+import Maketeam from './components/makeTeam';
+import Chatpage from './components/chatpage';
+import ProfilePictureUpload from './components/profile_post_page';
+import BgPictureUpload from './components/bg_post_page';
 function App() {
 
  
@@ -52,7 +55,9 @@ function App() {
         {/* <Route path="/profile/posts" element={ <Profilepageposts/> } />
         <Route path="/profile/about" element={ <Profilepage/> } /> */}
         <Route path="/players" element={ <Players/> } />
-        <Route path="/post" element={ <Postpage/> } />
+        <Route path="/post/Profile" element={ <ProfilePictureUpload/> } />
+        <Route path="/post/bg" element={ <BgPictureUpload/> } />
+
         <Route path="/ProfileForm" element={ <Profileform/> } />
         <Route path="/login" element={ <Login/> } />
 
@@ -61,8 +66,10 @@ function App() {
         <Route path="/skillsform" element={ <Skillsform/> } />
         <Route path="/notification" element={ <Notificationpage/> } />
         {/* <Route path="/post" element={ <Postpage/> } /> */}
-        <Route path="/team" element={ <Teampage/> } />
+        <Route path="/maketeam" element={ <Maketeam/> } />
+        <Route path="/chatteam" element={ <Chatpage/> } />
 
+        
         {/* <Route path="/team" element={ <Teamnameform/> } /> */}
         <Route path="/skillform" element={ <Skillform/> } />
 

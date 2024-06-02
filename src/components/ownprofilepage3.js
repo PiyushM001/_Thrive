@@ -8,6 +8,8 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
+import Followcomp from './followcomp';
+import reject from "../Images/reject.svg"
 
 import Footer from "./footer";
 import profilebg from "../Images/profile_bg.png";
@@ -15,7 +17,7 @@ import profilep from "../Images/profilep.png";
 import editicon from "../Images/edit-icon.svg";
 import settings from "../Images/Settings.svg";
 import cross from "../Images/cross.svg";
-
+import profilealt from '../Images/profile2.png';
 import posticon from "../Images/posticon.svg";
 import plusicon from "../Images/plusicon2.png";
 
@@ -31,7 +33,7 @@ import yt from "../Images/yt3.png";
 import insta from "../Images/insta3.png";
 import { Link, useParams } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
-
+import { IoCamera } from "react-icons/io5";
 export default function Ownprofilepage() {
   let navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
@@ -39,10 +41,11 @@ export default function Ownprofilepage() {
 
   const infoid = localStorage.getItem("infoid");
 
-  const { info, ownid, getinfo, addinfo, infostate, updateinfo } = a;
+  const {  ownid, getinfo, infostate, updateinfo,getfollowerslist,followersarray,followingarray, getfollowinglist,fetchProfilePicture ,Profilepic,bgpic} = a;
   const _id = ownid;
   useEffect(() => {
     getinfo();
+    fetchProfilePicture(infoid)
   }, []);
 
   const logoutfun = () => {
@@ -57,7 +60,8 @@ export default function Ownprofilepage() {
   const [  residence,setResidence] = useState(" ");
 
  
-
+  const [openFollowers, setOpenFollowers] = useState(false);
+  const [openAllies, setOpenAllies] = useState(false);
   const [openText, setOpenText] = useState(false);
   const [openContact1, setOpenContact1] = useState(false);
   const [openContact2, setOpenContact2] = useState(false);
@@ -78,6 +82,16 @@ export default function Ownprofilepage() {
     setOpenContact2(true);
 
   };
+  ;const handleClickToOpenFollowers = () => {
+    setOpenFollowers(true);
+    getfollowerslist(infoid);
+
+  };const handleClickToOpenAllies = () => {
+    setOpenAllies(true);
+    getfollowinglist(infoid);
+  };
+
+
 
   const handleSubmitText = () => {
     updateinfo(
@@ -161,11 +175,8 @@ export default function Ownprofilepage() {
     setOpenResidence(false);
   };
   const handleClose = () => {
-    setOpenText(false);
-    setOpenContact2(false);
-    setOpenContact1(false);
-    setOpenEducation(false);
-    setOpenResidence(false)
+    setOpenFollowers(false)
+    setOpenAllies(false);
   };
 
   // const handlec=()=>{
@@ -174,7 +185,7 @@ export default function Ownprofilepage() {
   return (
     <>
       {infostate.map((value) => (
-        <div className="bg-[#000000] w-full h-[100vh] overflow-y-scroll">
+        <div className="bg-gradient-to-r from-[#000000] to-[#000000] w-full h-[100vh] overflow-y-scroll">
           <ToastContainer />
           <Transition
             show={isOpen}
@@ -221,29 +232,35 @@ export default function Ownprofilepage() {
             </div>
           </Transition>
           <div>
-            <div>
-              <img className="w-[100vw] h-[6rem]" src={profilebg} alt="img" ></img>
+
+            <div className="bg-[red] relative flex flex-col items-end">
+              <img className="w-[100vw] h-[6rem]" src={bgpic} alt="img"></img>
+              <Link to="/post/bg" style={{color:"#f5f5f5"}} className="bg-[#686868] rounded-[100%] w-[1.5rem] h-[1.5rem] flex justify-center items-center  mt-[-2rem] mr-[1rem]"  ><IoCamera /></Link>
             </div>
 
             <div className="flex h-[4rem] relative items-center">
-              <div className="absolute left-0 bottom-0">
-                <img className="w-[35vw]" src={profilep} alt="img" ></img>
+              <div className="absolute left-0 bottom-0 flex">
+                <img className="w-[7rem] rounded-[100%] ml-4 border-[2px] border-[#4ddcf5]" src={Profilepic} alt={profilealt}></img>
+                <Link to="/post/Profile" style={{color:"#f5f5f5"}} className="bg-[#686868] rounded-[100%] w-[1.5rem] h-[1.5rem] flex justify-center items-center mt-[5rem] ml-[-1.3rem]"  ><IoCamera /></Link>
               </div>
               <div className="w-[40%]"></div>
               <div className="flex w-[60%] justify-end ">
-              
+                {/* <Link className="m-2" to="/ProfileForm">
+                  <img src={editicon}></img>
+                </Link> */}
 
                 <Link
                   className="  flex justify-center items-center "
                   to="/post"
                 >
-                  <img className="w-[1.2rem]" src={posticon} alt="img" ></img>
+                  <img className="w-[1.2rem]" src={posticon} alt="img"></img>
                 </Link>
                 <div className=" mr-[1rem] ml-[1rem] flex justify-center items-center ">
                   <img
                     onClick={() => setIsOpen(!isOpen)}
                     className="w-[1.2rem]"
                     src={settings}
+                    alt="img"
                   ></img>
                 </div>
 
@@ -255,47 +272,50 @@ export default function Ownprofilepage() {
               </div> */}
               </div>
 
-<div></div>
-</div>
-</div>
+              <div></div>
+            </div>
+          </div>
 
-<div className="">
-<div>
-<div className="text-[#ffffff] font-mochiy-pop text-[5vw] font-thin ml-[5vw]">
-  {value.IngameName}
-</div>
-<div className=" font-medium text-[60%] h-[30%] flex items-center text-[#656565] ml-[5vw]">
-  {value.RealName}
-</div>
-</div>
+          <div className="">
+            <div>
+              <div className="text-[#ffffff] font-mochiy-pop text-[5vw] font-thin ml-[5vw]">
+                {value.IngameName}
+              </div>
+              <div className=" font-medium text-[60%] h-[30%] flex items-center text-[#656565] ml-[5vw]">
+                {value.RealName}
+              </div>
+            </div>
 
-<div className="flex  h-[5rem] justify-evenly items-center ">
-<div className="flex w-[94%] h-[4rem] justify-evenly items-center">
-  <Link
-    to={`/followers/${_id}`}
-    className=" border-[1px] font-teachers border-[#00fbff20] bg-[#00fbff09]  w-[30%] h-[3rem] flex flex-col justify-center items-center text-[#a7a7a7] rounded-[10px] text-[3.5vw] glass3 "
-  >
-    <div>Followers</div>
-    <div>{value.followersCount}</div>
-  </Link>
-
-  <Link
-    to={`/following/${_id}`}
-    className=" border-[1px] font-teachers border-[#00fbff20] bg-[#00fbff09] w-[30%] h-[3rem] flex flex-col justify-center items-center text-[#a7a7a7] rounded-[10px] text-[3.5vw] glass3 "
-  >
-    <div>Allies</div>
-    <div>{value.followingCount}</div>
-  </Link>
-
-  <div className=" border-[1px] font-teachers border-[#00fbff20] bg-[#00fbff09]  w-[30%] h-[3rem] flex flex-col justify-center items-center text-[#a7a7a7] rounded-[10px] text-[3.5vw] glass3 ">
-    <div>Tournaments</div>
-    <div>0</div>
-  </div>
-</div>
-</div>
-</div>
+            <div className="flex  h-[5rem] justify-evenly items-center ">
+              <div className="flex w-[94%] h-[4rem] justify-evenly items-center">
 
 
+                <div
+                 onClick={handleClickToOpenFollowers}
+                  className=" border-[1px] font-teachers border-[#00fbff23] bg-[#00fbff09]  w-[30%] h-[3rem] flex flex-col justify-center items-center text-[#a7a7a7] rounded-[10px] text-[3.5vw] glass3"
+                >
+                  <div>Followers</div>
+                  <div>{value.followersCount}</div>
+                </div>
+
+
+
+                <div
+                 onClick={handleClickToOpenAllies}
+
+                  className=" border-[1px] font-teachers border-[#00fbff23] bg-[#00fbff09]  w-[30%] h-[3rem] flex flex-col justify-center items-center text-[#a7a7a7] rounded-[10px] text-[3.5vw] glass3"
+                >
+                  <div>Allies</div>
+                  <div>{value.followingCount}</div>
+                </div>
+
+                <div className=" border-[1px] font-teachers border-[#00fbff20] bg-[#00fbff09]  w-[30%] h-[3rem] flex flex-col justify-center items-center text-[#a7a7a7] rounded-[10px] text-[3.5vw] glass3">
+                  <div>Tournaments</div>
+                  <div>0</div>
+                </div>
+              </div>
+            </div>
+          </div>
 
 
 
@@ -428,7 +448,54 @@ export default function Ownprofilepage() {
 
 
 
+<Dialog open={openFollowers} onClose={handleClose} >
+                      <DialogTitle className="  w-[80vw] bg-[#020909] border-[#23757560] text-[#ebebeb] border-t-[1px]  border-l-[1px] border-r-[1px] ">
+                        <div className="flex">
+                          <div className="w-[90%]">Followers</div>
+                          <img onClick={handleClose} className="w-[10%]" src={reject} alt="img"></img>
+                        </div>
+                      </DialogTitle>
 
+
+                      <DialogContent className=" bg-[#020909] border-[#23757560]  border-b-[1px]  border-l-[1px] border-r-[1px] w-[80vw] h-[60vh]  ">
+                 
+                        <div className="w-full ">
+{followersarray.map((value)=>(
+                <Followcomp key={value.id} RealName={value.followerRealName} IngameName={value.followerIngameName} />
+                ))}
+</div>
+
+
+                      </DialogContent>
+                    </Dialog>
+                
+
+
+
+
+
+
+                    <Dialog open={openAllies} onClose={handleClose} >
+                      <DialogTitle className="  w-[80vw] bg-[#020909] border-[#23757560] text-[#ebebeb] border-t-[1px]  border-l-[1px] border-r-[1px] ">
+                        <div className="flex">
+                          <div className="w-[90%]">Allies</div>
+                          <img onClick={handleClose} className="w-[10%]" src={reject} alt="img"></img>
+                        </div>
+                      </DialogTitle>
+
+
+                      <DialogContent className=" bg-[#020909] border-[#23757560]  border-b-[1px]  border-l-[1px] border-r-[1px] w-[80vw] h-[60vh]  ">
+                 
+                        <div className="w-full ">
+{followingarray.map((value)=>(
+                <Followcomp key={value.id} RealName={value.RealName} IngameName={value.IngameName} />
+                ))}
+</div>
+
+
+                      </DialogContent>
+                    </Dialog>
+                
 
 
 

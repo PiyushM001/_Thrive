@@ -4,6 +4,10 @@ module.exports = {
 
     "./src/App.js",
 "./src/components/home.js",
+"./src/components/chatpage.js",
+"./src/components/chatcomp.js",
+
+
     "./src/components/footer.js",
     "./src/components/header.js",
     "./src/components/tournament.js",

@@ -1,12 +1,16 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useState, useContext,useRef } from 'react';
 import { pContext } from "../context/profilecontext";
 import loadinggif from '../Images/loading.gif';
 import pp from '../Images/org.png';
 import Chatcomp from './chatcomp';
-
+import io from 'socket.io-client';
+import { IoIosSend } from "react-icons/io";
+import Footer from './footer';
 const MyRealName = localStorage.getItem("MyRealName");
 const infoid = localStorage.getItem("infoid");
-const time = "time ye h abhi bkl dekh"; // This should probably be dynamic
+const time = new Date().toLocaleTimeString(); // Update to get current time
+
+const socket = io('http://localhost:5000'); // Adjust the URL according to your backend server
 
 export default function Chatpage() {
   const a = useContext(pContext);
@@ -19,83 +23,123 @@ export default function Chatpage() {
     chatfun,
     chatarray,
     getChats,
+    setChatArray,
   } = a;
 
   const teamname = "team7";
   const [msg, setmsg] = useState("");
   const [loading, setLoading] = useState(true);
+const [chatarray2,setchatarray2]=useState([])
+const [showFooter, setShowFooter] = useState(true);
+const chatRef = useRef(null);
+
 
   const fetchData = async () => {
     try {
-      await getChats(teamname);
-      console.log("chat array", chatarray);
-
+      await  getteaminfo();
+      
+      setLoading(false);
     } catch (error) {
       console.error('Error fetching chats:', error);
     } finally {
-      setLoading(false);
+    
+      chatRef.current?.scrollIntoView()
     }
   };
 
   useEffect(() => {
     setLoading(true);
-    fetchData();
+     fetchData();
+   
+     setchatarray2(chatarray)
+
+    socket.emit("joinRoom", teamnamein); // Join the room for the team
+
+    socket.on("newMessage", (message) => {
+      setchatarray2((chatarray) => [...chatarray, message]);
+    });
+
+    return () => {
+      socket.off("newMessage");
+    };
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
+useEffect(()=>{    chatRef.current?.scrollIntoView() 
+
+  console.log("chal to rha h ye messAGE SE")
+ },[chatarray2])
+
+
   const handleChat = () => {
-    chatfun(teamnamein, infoid, MyRealName, time, msg);
+
+    const messageData = {
+      teamname: teamnamein,
+      userId: infoid,
+      userRealName: MyRealName,
+      time: time,
+      message: msg
+    };
+    // Send message to the server
+    socket.emit("sendMessage", messageData);
     setmsg(""); // Clear the input after sending a message
   };
 
+  const handleInputFocus = () => {
+    setShowFooter(false); // Hide the footer when input is focused
+  };
 
   return (
     <div>
- {loading && (
+      {loading && (
         <div className='absolute w-full inset-0 opacity-90 fill-neutral-950 z-[1000]'>
           <div className='h-[30vh] bg-[#000000]'></div>
-          <img className='' src={loadinggif} alt='Loading' />
+          <img className='w-[100vw]' src={loadinggif} alt='Loading' />
           <div className='h-[30vh] bg-[#000000]'></div>
         </div>
       )}
 
-{!loading && (
-    <div className='flex flex-col items-center bg-[#030b0b]'>
-     
+      {!loading && (
+        <div className='flex flex-col items-center w-[100vw] h-[100vh] bg-[#000000]'>
+          <div className='bg-[#323232] h-[10vh] w-full flex justify-center items-center glass3 mb-1 headerbg'>
+            <div className='w-[3.5rem]'>
+              <img className='w-[80%] border-[2px] border-[#717171] rounded-[100%]' src={pp} alt='Profile' />
+            </div>
+            <div className='w-[70%] flex justify-center'>
+              <div className='text-[#ffffff] font-mochiy-pop text-[4vw] w-[80%]'>{teamnamein}</div>
+              <div className='flex text-[#9c9c9c] text-[3.2vw] font-teachers'>
+                {teamarray.map((value) => (
+                  <div className='mr-1' key={value.id}>{value.followerIngameName}</div>
+                ))}
+              </div>
+            </div>
+          </div>
 
-      <div className='bg-[#323232] h-[10vh] w-full flex justify-center items-center glass3 mb-1'>
-        <img className='w-[10vw] m-2' src={pp} alt='Profile' />
-        <div className='w-[74%]'>
-          <div className='text-[#ffffff] font-mochiy-pop text-[4vw]'>{teamnamein}</div>
-          <div className='flex text-[#9c9c9c] text-[3.2vw] font-teachers'>
-            {teamarray.map((value) => (
-              <div className='mr-1' key={value.id}>{value.followerIngameName}</div>
-            ))}
+          <div className="bg-[#000000] w-[95%]">
+            <div    className='h-[70vh] w-full overflow-y-scroll text-[#c7c7c7]'>
+              {   chatarray2.map((val) => (
+                <Chatcomp key={val.id} name={val.userRealName} msg={val.message} time={val.time} />
+              ))}
+              <div ref={chatRef} className=' '></div>
+            </div>
+
+            <div className='h-[4rem]  bg-[#000000] flex justify-center items-center'>
+              <div className='w-[95%] bg-[#000000] h-full flex items-center pl-[1rem]'>
+                <input
+                  placeholder='Start chatting'
+                  value={msg}
+                  onFocus={handleInputFocus} // Hide footer when input is focused
+                  onBlur={() => setShowFooter(true)}
+                  onChange={(e) => setmsg(e.target.value)}
+                  className='bg-[#111112] pl-2 w-[90%] rounded-[10px] h-[3rem] text-[#dadada] border-[#7a7a7a] rounded-r-[0px] border-[1px]'
+                />
+                <button className='p-2 pl-3 pr-3 rounded-[5px] h-[3rem] border-[#dfdfdf] rounded-l-[0px] border-r-[1px] border-t-[1px] border-b-[1px] text-[#a8a8a8] font-mochiy-pop' onClick={handleChat}><IoIosSend /></button>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-
-      <div className="bg-[#030b0b] w-[96%] h-[80vh]">
-        {!loading && (
-          <div className='h-[70vh] w-full overflow-y-scroll text-[#c7c7c7]'>
-            {chatarray.map((val) => (
-<Chatcomp msg={val.message } />
-))}
-          </div>
-        )}
-
-        <div className=' h-[10vh] flex justify-center items-center'>
-          <div className=' w-[95%] bg-[#00b3ff] h-full flex items-center pl-[1rem]'>
-            <input
-              placeholder='Start chatting'
-              value={msg}
-              onChange={(e) => setmsg(e.target.value)}
-              className='bg-[#111112]  w-[90%] rounded-[10px] h-[3rem] text-[#dadada] border-[#7a7a7a] border-[1px]'
-            />
-                      <button className=' p-2 pl-3 pr-3 rounded-[5px] h-[3rem] border-[#dfdfdf] border-[1px] text-[#e4e3e3] font-mochiy-pop' onClick={handleChat}>Send </button>
-
-          </div>
-        </div>
-      </div>
-    </div> )} </div>
+      )}
+      {showFooter && <Footer/> }
+      
+    </div>
   );
 }
